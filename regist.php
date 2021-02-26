@@ -11,7 +11,6 @@
             <ul>
                 <li>トップ</li>
                 <li>プロフィール</li>
-                <li>D.I.Blogについて</li>
                 <li><a href = "http://localhost/account/regist.php">アカウント登録</a></li>
                 <li>問い合わせ</li>
                 <li>その他</li>
@@ -47,10 +46,8 @@
                     </div>
                     <div>
                         <label>性格</label>
-                        <select class="dropdown" name="">
-                            <option>男</option>
-                            
-                        </select>
+                        <input type="radio" name="gender"value="0" checked>男
+                        <input type="radio" name="gender"value="1">女
                     </div>
                     <div>
                         <label>郵便番号</label>
@@ -58,6 +55,16 @@
                     </div>
                     <div>
                         <label>住所（都道府県）</label>
+                        <?php
+                        $prefecture_list = Array('北海道','青森県','岩手県','宮城県','秋田県','山形県','福島県','茨城県','栃木県','群馬県','埼玉県','千葉県','東京都','神奈川県','山梨県','長野県','新潟県','富山県','石川県','福井県','岐阜県','静岡県','愛知県','三重県','滋賀県','京都府','大阪府','兵庫県','奈良県','和歌山県','鳥取県','島根県','岡山県','広島県','山口県','徳島県','香川県','愛媛県','高知県','福岡県','佐賀県','長崎県','熊本県','大分県','宮崎県','鹿児島県','沖縄県'); ?>
+                    
+                        <select class="dropdown" name="prefecture">
+                            <option> </option>
+                            <?php
+                            foreach($prefecture_list as $prefecture_list){
+                                print('<option value="'.$prefecture_list.'">'.$prefecture_list.'</option>');
+                            } ?>
+                        </select>
                     </div>
                     <div>
                         <label>住所（市区町村）</label>
@@ -69,6 +76,10 @@
                     </div>
                     <div>
                         <label>アカウント権限</label>
+                        <select class="dropdown" name="authority">
+                            <option value='0'>一般</option>
+                            <option value='1'>管理者</option>
+                        </select>
                     </div>
                     <div>
                         <input type="submit" class="submit" value="確認する">
