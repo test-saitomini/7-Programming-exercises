@@ -22,36 +22,36 @@
                 <h2>入力フォーム</h2>
                     <div>
                         <label>名前（姓）</label>
-                        <input type="text"class="text" size="10"name="family_name"><br>
+                        <input type="text"class="text"size="10"name="family_name"value="<?php if( !empty($_POST['family_name']) ){ echo $_POST['family_name']; } ?>"><br>
                     </div>
                     <div>
                         <label>名前（名）</label>
-                        <input type="text"class="text" size="10"name="last_name"><br>
+                        <input type="text"class="text" size="10"name="last_name"value="<?php if( !empty($_POST['last_name']) ){ echo $_POST['last_name']; } ?>"><br>
                     </div>
                     <div>
                         <label>カナ（姓）</label>
-                        <input type="text"class="text" size="10"name="family_name_kana"><br>
+                        <input type="text"class="text" size="10"name="family_name_kana"value="<?php if( !empty($_POST['family_name_kana']) ){ echo $_POST['family_name_kana']; } ?>"><br>
                     </div>
                     <div>
                         <label>カナ（名）</label>
-                        <input type="text"class="text" size="10"name="last_name_kana"><br>
+                        <input type="text"class="text" size="10"name="last_name_kana"value="<?php if( !empty($_POST['last_name_kana']) ){ echo $_POST['last_name_kana']; } ?>"><br>
                     </div>
                     <div>
                         <label>メールアドレス</label>
-                        <input type="text"class="text" size="100"name="mail"><br>
+                        <input type="text"class="text" size="100"name="mail"value="<?php if( !empty($_POST['mail']) ){ echo $_POST['mail']; } ?>"><br>
                     </div>
                     <div>
                         <label>パスワード</label>
-                        <input type="text"class="text" size="10"name="password"><br>
+                        <input type="text"class="text" size="10"name="password"value="<?php if( !empty($_POST['password']) ){ echo $_POST['password']; } ?>"><br>
                     </div>
                     <div>
                         <label>性格</label>
-                        <input type="radio" name="gender"value="0" checked>男
-                        <input type="radio" name="gender"value="1">女
+                        <label for="0"><input id="0" type="radio" name="gender"value="0" checked>男</label>
+                        <label for="1"><input id="1" type="radio" name="gender"value="1">女</label>
                     </div>
                     <div>
                         <label>郵便番号</label>
-                        <input type="text"class="text" size="7"name="postal_code"><br>
+                        <input type="text"class="text" size="7"name="postal_code"value="<?php if( !empty($_POST['postal_code']) ){ echo $_POST['postal_code']; } ?>"><br>
                     </div>
                     <div>
                         <label>住所（都道府県）</label>
@@ -68,11 +68,11 @@
                     </div>
                     <div>
                         <label>住所（市区町村）</label>
-                        <input type="text"class="text" size="10"name="address_1"><br>
+                        <input type="text"class="text" size="10"name="address_1"value="<?php if( !empty($_POST['address_1']) ){ echo $_POST['address_1']; } ?>"><br>
                     </div>
                     <div>
                         <label>住所（番地）</label>
-                        <input type="text"class="text" size="100"name="address_2"><br>
+                        <input type="text"class="text" size="100"name="address_2"value="<?php if( !empty($_POST['address_2']) ){ echo $_POST['address_2']; } ?>"><br>
                     </div>
                     <div>
                         <label>アカウント権限</label>
