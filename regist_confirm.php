@@ -84,7 +84,7 @@
         <form action="regist_complete.php" method="post">
             <input type="submit" class="button2" value="登録する">
             <input type="hidden" value="<?php echo $_POST['family_name'];?>" name="family_name">
-            <input type="hidden" value="<?php echo $_POST['last_name'];?>" name="address">
+            <input type="hidden" value="<?php echo $_POST['last_name'];?>" name="last_name">
             <input type="hidden" value="<?php echo $_POST['family_name_kana'];?>" name="family_name_kana">
             <input type="hidden" value="<?php echo $_POST['last_name_kana'];?>" name="last_name_kana">
             <input type="hidden" value="<?php echo $_POST['mail'];?>" name="mail">
@@ -95,6 +95,7 @@
             <input type="hidden" value="<?php echo $_POST['address_1'];?>" name="address_1">
             <input type="hidden" value="<?php echo $_POST['address_2'];?>" name="address_2">
             <input type="hidden" value="<?php echo $_POST['authority'];?>" name="authority">
+            <input type="hidden" value="1" name="delete_flag">
         </form>
         
     </body>

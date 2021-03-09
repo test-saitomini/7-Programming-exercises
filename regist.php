@@ -45,7 +45,7 @@
                         <input type="text"class="text" size="10"name="password"value="<?php if( !empty($_POST['password']) ){ echo $_POST['password']; } ?>"><br>
                     </div>
                     <div>
-                        <label>性格</label>
+                        <label>性別</label>
                         <label for="0"><input id="0" type="radio" name="gender"value="0" checked>男</label>
                         <label for="1"><input id="1" type="radio" name="gender"value="1">女</label>
                     </div>
