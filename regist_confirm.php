@@ -95,7 +95,10 @@
             <input type="hidden" value="<?php echo $_POST['address_1'];?>" name="address_1">
             <input type="hidden" value="<?php echo $_POST['address_2'];?>" name="address_2">
             <input type="hidden" value="<?php echo $_POST['authority'];?>" name="authority">
-            <input type="hidden" value="1" name="delete_flag">
+            <input type="hidden" value="0" name="delete_flag">
+            
+            
+            
         </form>
         
     </body>

@@ -77,7 +77,7 @@
                     <div>
                         <label>アカウント権限</label>
                         <select class="dropdown" name="authority">
-                            <option value='0'>一般</option>
+                            <option value='0'　checked>一般</option>
                             <option value='1'>管理者</option>
                         </select>
                     </div>
