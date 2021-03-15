@@ -4,6 +4,9 @@
         <meta charset="UTF-8">
         <title>アカウント登録画面</title>
         <link rel="stylesheet"type="text/css"href="regist.css">
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        
     </head>
     
     <body>
@@ -23,26 +26,32 @@
                     <div>
                         <label>名前（姓）</label>
                         <input type="text"class="text"size="10"name="family_name"value="<?php if( !empty($_POST['family_name']) ){ echo $_POST['family_name']; } ?>"><br>
+                        <span id = 'family_name_error' class="error_m"></span><br>
                     </div>
                     <div>
                         <label>名前（名）</label>
                         <input type="text"class="text" size="10"name="last_name"value="<?php if( !empty($_POST['last_name']) ){ echo $_POST['last_name']; } ?>"><br>
+                        <span id = 'last_name_error' class="error_m"></span><br>
                     </div>
                     <div>
                         <label>カナ（姓）</label>
                         <input type="text"class="text" size="10"name="family_name_kana"value="<?php if( !empty($_POST['family_name_kana']) ){ echo $_POST['family_name_kana']; } ?>"><br>
+                        <span id = 'family_name_kana_error' class="error_m"></span><br>
                     </div>
                     <div>
                         <label>カナ（名）</label>
                         <input type="text"class="text" size="10"name="last_name_kana"value="<?php if( !empty($_POST['last_name_kana']) ){ echo $_POST['last_name_kana']; } ?>"><br>
+                        <span id = 'last_name_kana_error' class="error_m"></span><br>
                     </div>
                     <div>
                         <label>メールアドレス</label>
                         <input type="text"class="text" size="100"name="mail"value="<?php if( !empty($_POST['mail']) ){ echo $_POST['mail']; } ?>"><br>
+                        <span id = 'mail_error' class="error_m"></span><br>
                     </div>
                     <div>
                         <label>パスワード</label>
                         <input type="text"class="text" size="10"name="password"value="<?php if( !empty($_POST['password']) ){ echo $_POST['password']; } ?>"><br>
+                        <span id = 'password_error' class="error_m"></span><br>
                     </div>
                     <div>
                         <label>性別</label>
@@ -52,6 +61,7 @@
                     <div>
                         <label>郵便番号</label>
                         <input type="text"class="text" size="7"name="postal_code"value="<?php if( !empty($_POST['postal_code']) ){ echo $_POST['postal_code']; } ?>"><br>
+                        <span id = 'postal_code_error' class="error_m"></span><br>
                     </div>
                     <div>
                         <label>住所（都道府県）</label>
@@ -65,14 +75,17 @@
                                 print('<option value="'.$prefecture_list.'">'.$prefecture_list.'</option>');
                             } ?>
                         </select>
+                        <span id = 'prefecture_error' class="error_m"></span><br>
                     </div>
                     <div>
                         <label>住所（市区町村）</label>
                         <input type="text"class="text" size="10"name="address_1"value="<?php if( !empty($_POST['address_1']) ){ echo $_POST['address_1']; } ?>"><br>
+                        <span id = 'address_1_error' class="error_m"></span><br>
                     </div>
                     <div>
                         <label>住所（番地）</label>
                         <input type="text"class="text" size="100"name="address_2"value="<?php if( !empty($_POST['address_2']) ){ echo $_POST['address_2']; } ?>"><br>
+                        <span id = 'address_2_error' class="error_m"></span><br>
                     </div>
                     <div>
                         <label>アカウント権限</label>
@@ -82,7 +95,7 @@
                         </select>
                     </div>
                     <div>
-                        <input type="submit" class="submit" value="確認する">
+                        <input type="submit" class="submit" id="submit" value="確認する">
                     </div>
                 </form>
                     <br>
@@ -91,5 +104,6 @@
         <footer>
             Copyright D.I.Works| D.I.blog is the one which provides Ato Z about programming
         </footer>
+        <script type="text/javascript" src="regist.js"></script>
     </body>
 </html>
