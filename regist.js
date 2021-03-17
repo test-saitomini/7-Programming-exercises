@@ -1,7 +1,7 @@
 //サイトからコピーしたので明日から実行する。
 
-$(function(){
-	$('input:submit[id="btn_submit"]').click(function(){
+/*$(function(){
+	$('input:submit[id="submit"]').click(function(){
 		if(!input_check()){
 			return false;
 		}
@@ -13,39 +13,49 @@ function input_check(){
 	var result = true;
 
 	// エラー用装飾のためのクラスリセット
-	$('#name').removeClass("inp_error");
-	$('#furigana').removeClass("inp_error");
-	$('#username').removeClass("inp_error");
-	$('#mailaddress').removeClass("inp_error");
-	$('#tel').removeClass("inp_error");
-	$('#remarks').removeClass("inp_error");
+	$('#family_name').removeClass("inp_error");
+    $('#last_name').removeClass("inp_error");
+    $('#family_name_kana').removeClass("inp_error");
+    $('#last_name_kana').removeClass("inp_error");
+	$('#mail').removeClass("inp_error");
+	$('#password').removeClass("inp_error");
+	$('#postal_code').removeClass("inp_error");
+	$('#prefecture').removeClass("inp_error");
+	$('#address_1').removeClass("inp_error");
+    $('#address_2').removeClass("inp_error");
 
 	// 入力エラー文をリセット
-	$("#name_error").empty();
-	$("#furigana_error").empty();
-	$("#username_error").empty();
-	$("#mailaddress_error").empty();
-	$("#tel_error").empty();
-	$("#remarks_error").empty();
+	$("#family_name_error").empty();
+	$("#last_name_error").empty();
+    $("#family_name_kana_error").empty();
+	$("#last_name_kana_error").empty();
+	$("#mail_error").empty();
+	$("#password_error").empty();
+	$("#postal_code_error").empty();
+	$("#address_1_error").empty();
+    $("#address_2_error").empty();
 
 	// 入力内容セット
-	var name   = $("#name").val();
-	var furigana  = $("#furigana").val();
-	var username = $("#username").val();
-	var mailaddress  = $("#mailaddress").val();
-	var tel  = $("#tel").val().replace(/[━.*‐.*―.*－.*\–.*ー.*\-]/gi,'');
-	var remarks  = $("#remarks").val();
+	var family_name   = $("#family_name").val();
+	var last_name  = $("#last_name").val();
+    var family_name_kana   = $("#family_name_kana").val();
+	var last_name_kana  = $("#last_name_kana").val();
+	var mail = $("#mail").val();
+	var password  = $("#password").val();
+	var postal_code  = $("#postal_code").val();
+	var raddress_1  = $("#address_1").val();
+    var raddress_2  = $("#address_2").val();
 
 	// 入力内容チェック
 
 	// お名前
-	if(name == ""){
-		$("#name_error").html(" お名前は必須です。");
-		$("#name").addClass("inp_error");
+	if(family_name == ""){
+		$("#family_name_error").html(" お名前は必須です。");
+		$("#family_name").addClass("inp_error");
 		result = false;
-	}else if(name.length > 25){
-		$("#name_error").html(" お名前は25文字以内で入力してください。");
-		$("#name").addClass("inp_error");
+	}else if(name.length >10){
+		$("#family_name_error").html(" お名前は10文字以内で入力してください。");
+		$("#family_name").addClass("inp_error");
 		result = false;
 	}
 	// フリガナ
@@ -57,15 +67,9 @@ function input_check(){
 		$("#furigana_error").html(" フリガナは全角カタカナで入力してください。");
 		$("#furigana").addClass("inp_error");
 		result = false;
-	}else if(furigana.length > 25){
+	}/*else if(furigana.length > 25){
 		$("#furigana_error").html(" フリガナは25文字以内入力してください。");
 		$("#furigana").addClass("inp_error");
-		result = false;
-	}
-	// ユーザー名
-	if(username.length > 25){
-		$("#username_error").html(" ユーザー名は25文字以内入力してください。");
-		$("#username").addClass("inp_error");
 		result = false;
 	}
 	// メールアドレス
@@ -81,31 +85,5 @@ function input_check(){
 		$('#mailaddress_error').html(" 正しいメールアドレスを入力してください。");
 		$("#mailaddress").addClass("inp_error");
 		result = false;
-	}
-	// 電話番号
-	if(tel == ""){
-		$("#tel_error").html(" 電話番号は必須です。");
-		$("#tel").addClass("inp_error");
-	result = false;
-	}else if((!tel.match(/^[0-9]+$/)) || (tel.length < 10)){
-		$('#tel_error').html(" 正しい電話番号を入力してください。");
-		$("#tel").addClass("inp_error");
-		result = false;
-	}
-	// お問い合わせ内容
-	if(remarks == ""){
-		$("#remarks_error").html(" お問い合わせ内容は必須です。");
-		$("#remarks").addClass("inp_error");
-		result = false;
-	}else if(remarks.match(/[<(.*)>.*<\/\1>]/)){
-		$('#remarks_error').html(" HTML、URLの貼りつけは禁止しています。");
-		$("#remarks").addClass("inp_error");
-		result = false;
-	}else if(remarks.match(/^[ 　\r\n\t]*$/)){
-		$('#remarks_error').html(" お問い合わせ内容は必須です。");
-		$("#remarks").addClass("inp_error");
-		result = false;
-	}
-
-	return result;
+	}*/
 }

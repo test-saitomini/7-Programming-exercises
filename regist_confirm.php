@@ -1,3 +1,10 @@
+<?php
+if( !empty($_POST['submit_2']) ) {
+
+	$page_flag = 2;
+}
+?>
+
 <!DOCTYPE HTML>
 <html lang="ja">
     <head>
@@ -21,6 +28,7 @@
         <br>よろしければ「送信する」ボタンを押してください。
         </p>
             
+        <?php if( $page_flag === 1 ): ?>
         <p>名前（姓）
         <br>
         <?php echo $_POST['family_name'];?>
@@ -82,7 +90,7 @@
         <input type="submit" onclick=history.back() value="戻って修正する">
             
         <form action="regist_complete.php" method="post">
-            <input type="submit" class="button2" value="登録する">
+            <input type="submit" name="submit_2" value="登録する">
             <input type="hidden" value="<?php echo $_POST['family_name'];?>" name="family_name">
             <input type="hidden" value="<?php echo $_POST['last_name'];?>" name="last_name">
             <input type="hidden" value="<?php echo $_POST['family_name_kana'];?>" name="family_name_kana">
@@ -100,6 +108,6 @@
             
             
         </form>
-        
+        <?php else: ?>
     </body>
 </html>

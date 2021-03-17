@@ -1,3 +1,17 @@
+<?php
+
+$page_flag=0;
+$clean= array();
+$error = array();
+
+if( !empty($clean['submit_1']) ) {
+
+	$error = validation($clean);
+
+	if( empty($error) ) {
+		$page_flag = 1;
+	}
+?>
 <!DOCTYPE HTML>
 <html lang="ja">
     <head>
@@ -95,7 +109,7 @@
                         </select>
                     </div>
                     <div>
-                        <input type="submit" class="submit" id="submit" value="確認する">
+                        <input type="submit" name="submit_1" value="確認する">
                     </div>
                 </form>
                     <br>
