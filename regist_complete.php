@@ -21,10 +21,12 @@ $pdo -> exec("insert into account(family_name,last_name,family_name_kana,last_na
     <body>
         <h1>アカウント登録完了</h1>
         <div class="confirm">
+            <?php elseif( $page_flag === 2): ?>
             <p>登録完了しました。</p>
              <form action="regist.html" method="post">
             <input type="submit" class="button2" value="TOPページに戻る">
             </form>
+            <?php else: ?>
         </div>
     </body>
     

@@ -1,17 +1,48 @@
-<?php
+//<?php
 
-$page_flag=0;
-$clean= array();
-$error = array();
+//変数の初期化
+//$page_flag = 0;
+//$error = array();
 
-if( !empty($clean['submit_1']) ) {
-
-	$error = validation($clean);
-
-	if( empty($error) ) {
-		$page_flag = 1;
-	}
-?>
+//if( !empty($_POST['btn_confirm'])) {
+  //エラーチェック
+   //$error = validation($_POST);
+    //if( empty($error) ) {
+        //$page_flag = 1;
+    //}
+    //} elseif ( !empty($_POST['btn_submit'])) {
+       //$page_flag = 2;
+    //} else {
+        //$page_flag = 0;
+//    }
+//
+//    function validation($data) {
+//        $error = array();
+//        $check = array();
+//        
+//        // 氏名のエラー判定
+//        if ( empty($data['family_name']) ) {
+//            $error[] = "　氏名を記入してください";
+//        } elseif (  mb_strlen($data['family_name'] > 10) ) {
+//            $error[] = "　氏名を記入してください";
+//        }
+//        // メールアドレスのエラー判定
+//        //メールアドレスの@前後をcheck配列に格納（check[1]がドメイン部分）
+//        //$check = explode('@',$data['mail']);
+//        //if ( empty($data['mail']) ) {
+//            //$error[] = "　メールアドレスを記入してください";
+//       // } elseif ( !preg_match( '/^[0-9a-z_.\/?-]+@([0-9a-z-]+\.)+[0-9a-z-]+$/', $data['mail']) ) {
+//            //$error[] = "　正しいメールアドレスを記入してください";
+//            //ドメイン部分が有効か判定
+//       // }elseif (!(checkdnsrr($check[1],'A')) ) {
+//        //    $error[] = "　有効なドメインか確認してください";
+//       // } elseif ( 50 < mb_strlen($data['mail']) ) {
+//       //     $error[] = "　正しいメールアドレスを記入してください";
+//       // }
+//        return $error;
+//    }
+//    
+//?>
 <!DOCTYPE HTML>
 <html lang="ja">
     <head>
@@ -109,7 +140,7 @@ if( !empty($clean['submit_1']) ) {
                         </select>
                     </div>
                     <div>
-                        <input type="submit" name="submit_1" value="確認する">
+                        <input type="submit" name="btn_confirm" value="確認する">
                     </div>
                 </form>
                     <br>
