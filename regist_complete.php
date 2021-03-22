@@ -17,7 +17,6 @@ $pdo -> exec("insert into account(family_name,last_name,family_name_kana,last_na
         <title>アカウント登録完了画面</title>
         <link rel="stylesheet"type="text/css" href="style2_php.css">
     </head>
-    <?php elseif( $page_flag === 2 ): ?>
     <body>
         <h1>アカウント登録完了</h1>
         <div class="confirm">
@@ -26,7 +25,6 @@ $pdo -> exec("insert into account(family_name,last_name,family_name_kana,last_na
              <form action="regist.html" method="post">
             <input type="submit" class="button2" value="TOPページに戻る">
             </form>
-            <?php else: ?>
         </div>
     </body>
     

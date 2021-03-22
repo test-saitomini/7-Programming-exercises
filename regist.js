@@ -1,7 +1,7 @@
 //サイトからコピーしたので明日から実行する。
 
-/*$(function(){
-	$('input:submit[id="submit"]').click(function(){
+$(function(){
+	$('input:submit[id="btn_confirm"]').click(function(){
 		if(!input_check()){
 			return false;
 		}
@@ -57,7 +57,7 @@ function input_check(){
 		$("#family_name_error").html(" お名前は10文字以内で入力してください。");
 		$("#family_name").addClass("inp_error");
 		result = false;
-	}
+	}/*
 	// フリガナ
 	if(furigana == ""){
 		$("#furigana_error").html(" フリガナは必須です。");
@@ -67,7 +67,7 @@ function input_check(){
 		$("#furigana_error").html(" フリガナは全角カタカナで入力してください。");
 		$("#furigana").addClass("inp_error");
 		result = false;
-	}/*else if(furigana.length > 25){
+	}else if(furigana.length > 25){
 		$("#furigana_error").html(" フリガナは25文字以内入力してください。");
 		$("#furigana").addClass("inp_error");
 		result = false;
@@ -86,4 +86,5 @@ function input_check(){
 		$("#mailaddress").addClass("inp_error");
 		result = false;
 	}*/
+    return result;
 }

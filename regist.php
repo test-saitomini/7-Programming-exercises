@@ -1,4 +1,4 @@
-//<?php
+<?php
 
 //変数の初期化
 //$page_flag = 0;
@@ -23,7 +23,7 @@
 //        // 氏名のエラー判定
 //        if ( empty($data['family_name']) ) {
 //            $error[] = "　氏名を記入してください";
-//        } elseif (  mb_strlen($data['family_name'] > 10) ) {
+//        } elseif ( 10< mb_strlen($data['family_name'] ) {
 //            $error[] = "　氏名を記入してください";
 //        }
 //        // メールアドレスのエラー判定
@@ -42,7 +42,7 @@
 //        return $error;
 //    }
 //    
-//?>
+?>
 <!DOCTYPE HTML>
 <html lang="ja">
     <head>
@@ -50,8 +50,7 @@
         <title>アカウント登録画面</title>
         <link rel="stylesheet"type="text/css"href="regist.css">
         
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     </head>
     
     <body>
@@ -140,7 +139,8 @@
                         </select>
                     </div>
                     <div>
-                        <input type="submit" name="btn_confirm" value="確認する">
+                        <input type="submit" id="btn_confirm" value="確認する">
+                        <script type="text/javascript" src="regist.js"></script>
                     </div>
                 </form>
                     <br>
@@ -149,6 +149,6 @@
         <footer>
             Copyright D.I.Works| D.I.blog is the one which provides Ato Z about programming
         </footer>
-        <script type="text/javascript" src="regist.js"></script>
+        
     </body>
 </html>
