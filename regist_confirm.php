@@ -1,7 +1,3 @@
-<?php
-$page_flag = 1;
-
-?>
 <!DOCTYPE HTML>
 <html lang="ja">
     <head>
@@ -24,11 +20,6 @@ $page_flag = 1;
         <p>お問合わせ内容はこちらでよろしいでしょうか？
         <br>よろしければ「送信する」ボタンを押してください。
         </p>
-            
-        <?php
-        
-        if( $page_flag === 1): ?>
-       
         <p>名前（姓）
         <br>
         <?php echo $_POST['family_name'];?>
@@ -108,7 +99,5 @@ $page_flag = 1;
             
             
         </form>
-        
-         <?php endif  ?>
     </body>
 </html>

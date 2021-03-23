@@ -5,15 +5,15 @@
 //$error = array();
 
 //if( !empty($_POST['btn_confirm'])) {
-  //エラーチェック
-   //$error = validation($_POST);
-    //if( empty($error) ) {
-        //$page_flag = 1;
-    //}
-    //} elseif ( !empty($_POST['btn_submit'])) {
-       //$page_flag = 2;
-    //} else {
-        //$page_flag = 0;
+//  //エラーチェック
+//   $error = validation($_POST);
+//    if( empty($error) ) {
+//        $page_flag = 1;
+//      }
+//    } elseif ( !empty($_POST['btn_submit'])) {
+//       $page_flag = 2;
+//    } else {
+//        $page_flag = 0;
 //    }
 //
 //    function validation($data) {
@@ -26,19 +26,19 @@
 //        } elseif ( 10< mb_strlen($data['family_name'] ) {
 //            $error[] = "　氏名を記入してください";
 //        }
-//        // メールアドレスのエラー判定
-//        //メールアドレスの@前後をcheck配列に格納（check[1]がドメイン部分）
-//        //$check = explode('@',$data['mail']);
-//        //if ( empty($data['mail']) ) {
-//            //$error[] = "　メールアドレスを記入してください";
-//       // } elseif ( !preg_match( '/^[0-9a-z_.\/?-]+@([0-9a-z-]+\.)+[0-9a-z-]+$/', $data['mail']) ) {
-//            //$error[] = "　正しいメールアドレスを記入してください";
-//            //ドメイン部分が有効か判定
-//       // }elseif (!(checkdnsrr($check[1],'A')) ) {
-//        //    $error[] = "　有効なドメインか確認してください";
-//       // } elseif ( 50 < mb_strlen($data['mail']) ) {
-//       //     $error[] = "　正しいメールアドレスを記入してください";
-//       // }
+//        //メールアドレスのエラー判定
+//        メールアドレスの@前後をcheck配列に格納（check[1]がドメイン部分）
+//        $check = explode('@',$data['mail']);
+//        if ( empty($data['mail']) ) {
+//            $error[] = "　メールアドレスを記入してください";
+//        } elseif ( !preg_match( '/^[0-9a-z_.\/?-]+@([0-9a-z-]+\.)+[0-9a-z-]+$/', $data['mail']) ) {
+//            $error[] = "　正しいメールアドレスを記入してください";
+//            ドメイン部分が有効か判定
+//        }elseif (!(checkdnsrr($check[1],'A')) ) {
+//            $error[] = "　有効なドメインか確認してください";
+//        } elseif ( 50 < mb_strlen($data['mail']) ) {
+//            $error[] = "　正しいメールアドレスを記入してください";
+//        }
 //        return $error;
 //    }
 //    

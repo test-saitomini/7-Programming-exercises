@@ -47,7 +47,6 @@ function input_check(){
     var raddress_2  = $("#address_2").val();
 
 	// 入力内容チェック
-
 	// お名前
 	if(family_name == ""){
 		$("#family_name_error").html(" お名前は必須です。");
