@@ -45,6 +45,9 @@ function input_check(){
 	var postal_code  = $("#postal_code").val();
 	var raddress_1  = $("#address_1").val();
     var raddress_2  = $("#address_2").val();
+    
+    alert(family_name);
+    
 
 	// 入力内容チェック
 	// お名前
@@ -56,8 +59,8 @@ function input_check(){
 		$("#family_name_error").html(" お名前は10文字以内で入力してください。");
 		$("#family_name").addClass("inp_error");
 		result = false;
-	}/*
-	// フリガナ
+	}
+	/*// フリガナ
 	if(furigana == ""){
 		$("#furigana_error").html(" フリガナは必須です。");
 		$("#furigana").addClass("inp_error");
@@ -85,5 +88,6 @@ function input_check(){
 		$("#mailaddress").addClass("inp_error");
 		result = false;
 	}*/
+    alert(result);
     return result;
 }
