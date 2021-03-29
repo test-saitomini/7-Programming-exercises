@@ -1,5 +1,3 @@
-//サイトからコピーしたので明日から実行する。
-
 $(function(){
 	$('input:submit[id="btn_confirm"]').click(function(){
 		if(!input_check()){
@@ -45,8 +43,8 @@ function input_check(){
 	var password  = $("#password").val();
 	var postal_code  = $("#postal_code").val();
     var prefecture  = $("#prefecture").val();
-	var raddress_1  = $("#address_1").val();
-    var raddress_2  = $("#address_2").val();
+	var address_1  = $("#address_1").val();
+    var address_2  = $("#address_2").val();
     
 
 	// 入力内容チェック
@@ -64,7 +62,7 @@ function input_check(){
 		$("#family_name").addClass("inp_error");
 		result = false;
     }
-    /*if(last_name == ""){
+    if(last_name == ""){
 		$("#last_name_error").html(" 名前（名）が未入力です。。");
 		$("#last_name").addClass("inp_error");
 		result = false;
@@ -72,7 +70,7 @@ function input_check(){
 		$("#last_name_error").html(" 名前（名）は10文字以内で入力してください。");
 		$("#last_name").addClass("inp_error");
 		result = false;
-	}/*else if(!last_name.match(/^[\u3040-\u309f\u30e0-\u9fcf]+$/)){
+	}else if(!last_name.match(/^[\u3040-\u309f\u30e0-\u9fcf]+$/)){
         $("#last_name_error").html(" 名前（名）は漢字かひらがなで入力してください。");
 		$("#last_name").addClass("inp_error");
 		result = false;
@@ -127,7 +125,7 @@ function input_check(){
 		$("#password_error").html(" パスワードは10文字以内で入力してください。");
 		$("#password").addClass("inp_error");
 		result = false;
-	}/*else if(!password.match(/^[0-9a-zA-Z]+$/)){
+	}else if(!password.match(/^[0-9a-zA-Z]+$/)){
         $("#password_error").html(" パスワードは10文字以内で入力してください。");
 		$("#password").addClass("inp_error");
 		result = false;
@@ -154,16 +152,18 @@ function input_check(){
 	}
     //住所（市区町村）
     if(address_1 == ""){
-		$("#faddress_1_error").html(" 住所（市区町村）が未入力です。");
+		$("#address_1_error").html(" 住所（市区町村）が未入力です。");
 		$("#address_1").addClass("inp_error");
 		result = false;
-	}else if(last_name.length >10){
+	}else if(address_1.length >10){
 		$("#address_1_error").html(" 住所（市区町村）は10文字以内で入力してください。");
 		$("#address_1").addClass("inp_error");
 		result = false;
-	}//else if(!address_1.match()){
-    
-    //}
+	}else if(!address_1.match(/^[\u3040-\u309f\u30a0-\u30ff\u30e0-\u9fcf\0-9\-ー\ 　]+$/)){
+        $("#address_1_error").html(" 住所（市区町村）は漢字・ひらがな・カタカナ・半角数字で入力してください。");
+		$("#address_1").addClass("inp_error");
+		result = false;
+    }
     //住所（番地）
     if(address_2 == ""){
 		$("#address_2_error").html(" 住所（番地）が未入力です。");
@@ -173,8 +173,10 @@ function input_check(){
 		$("#address_2_error").html(" 住所（番地）は100文字以内で入力してください。");
 		$("#address_2").addClass("inp_error");
 		result = false;
-	}//else if(!password.match()){
-    
-    //}*/
+	}else if(!address_2.match(/^[\u3040-\u309f\u30a0-\u30ff\u30e0-\u9fcf\0-9\-ー\ 　]+$/)){
+        $("#address_2_error").html(" 住所（番地）は漢字・ひらがな・カタカナ・半角数字・ハイフンで入力してください。");
+		$("#address_2").addClass("inp_error");
+		result = false;
+    }
     return result;
 }

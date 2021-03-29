@@ -73,7 +73,7 @@
                             foreach($prefecture_list as $prefecture_list){
                                 print('<option value="'.$prefecture_list.'">'.$prefecture_list.'</option>');
                             } ?>
-                        </select>
+                        </select><br>
                         <span id = 'prefecture_error' class="error_m"></span><br>
                     </div>
                     <div>
@@ -94,7 +94,7 @@
                         </select>
                     </div>
                     <div>
-                        <input type="submit" name="btn_confirm" id="btn_confirm" value="確認する">
+                        <input type="submit" class="btn_submit" id="btn_confirm" value="確認する">
                     </div>
                 </form>
                     <br>
