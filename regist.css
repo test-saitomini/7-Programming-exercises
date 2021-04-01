@@ -24,3 +24,20 @@ footer{float:left;
     text-align: center;
     line-height: 60px;
 }
+
+/*regist.jsの赤文字エラーの表示*/
+span.error_m {
+    font-size: 15px;
+	font-weight: normal;
+	color: #FF0000;
+    display: block;
+    margin: 0;
+}
+
+/*regist_complete.phpアカウント登録完了画面装飾*/
+h4{
+    font-size: 30px;
+}
+.back-top{
+    text-align: center;
+}

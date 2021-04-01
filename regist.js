@@ -63,7 +63,7 @@ function input_check(){
 		result = false;
     }
     if(last_name == ""){
-		$("#last_name_error").html(" 名前（名）が未入力です。。");
+		$("#last_name_error").html(" 名前（名）が未入力です。");
 		$("#last_name").addClass("inp_error");
 		result = false;
 	}else if(last_name.length >10){
