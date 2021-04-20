@@ -126,7 +126,7 @@ function input_check(){
 		$("#password").addClass("inp_error");
 		result = false;
 	}else if(!password.match(/^[0-9a-zA-Z]+$/)){
-        $("#password_error").html(" パスワードは10文字以内で入力してください。");
+        $("#password_error").html(" パスワードは半角英数字で入力してください。");
 		$("#password").addClass("inp_error");
 		result = false;
     }

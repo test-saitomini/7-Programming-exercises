@@ -45,8 +45,8 @@
         <p>パスワード
         <br>
         <?php
-            $password = 'pwd';
-            for($i=0;$i<=strlen($password);$i++){
+            $password = $_POST['password'];
+            for($i=0;$i<= mb_strlen($password);$i++){
             echo '●';}?>
         </p>
         
