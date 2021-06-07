@@ -46,7 +46,7 @@
         <br>
         <?php
             $password = $_POST['password'];
-            for($i=0;$i<= mb_strlen($password);$i++){
+            for($i=0;$i< mb_strlen($password);$i++){
             echo '●';}?>
         </p>
         
