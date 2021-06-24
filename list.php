@@ -21,36 +21,72 @@
         </header>
         
         <main>
+            <div class = "kakunin_area">
+            <table>
+                <tr>
+                    <td>ID</td>
+                    <td>名前（姓）</td>
+                    <td>名前（名）</td>
+                    <td>カナ（姓）</td>
+                    <td>カナ（名）</td>
+                    <td>メールアドレス</td>
+                    <td>性別</td>
+                    <td>アカウント権限</td>
+                    <td>削除フラグ</td>
+                    <td>登録日時</td>
+                    <td>更新日時</td>
+                    <td>操作</td>
+                </tr>
             <?php
             
             mb_internal_encoding("UTF-8");
             $pdo = new PDO("mysql:dbname=lesson01;host=localhost;","root","");
             
             $stmt = $pdo -> query("select * from account");
-            
+            //ここにIDを降順にするif文を追記。            
             while($row = $stmt->fetch()){
-                echo $row['id'];
-                echo $row['family_name'];
-                echo $row['last_name'];
-                echo $row['family_name_kana'];
-                echo $row['last_name_kana'];
-                echo $row['mail'];
-                echo $row['gender'];//パラメータのみではなく日本語で
-                echo $row['authority'];//パラメータのみではなく日本語で
-                echo $row['delete_flag'];
-                echo $row['registered_time'];//年月日のみ
-                echo $row['update_time'];//年月日のみ
+                echo '<tr>';
+                echo '<td>',$row['id'],'</td>';
+                echo '<td>',$row['family_name'],'</td>';
+                echo '<td>',$row['last_name'],'</td>';
+                echo '<td>',$row['family_name_kana'],'</td>';
+                echo '<td>',$row['last_name_kana'],'</td>';
+                echo '<td>',$row['mail'],'</td>';
+                if($row['gender'] === "0"){
+                    echo '<td>',"男",'</td>';}else{
+                    echo '<td>',"女",'</td>';
+                }//パラメータのみではなく日本語で
+                if($row['authority'] === "0"){
+                    echo '<td>',"一般",'</td>';}else{
+                    echo '<td>',"管理者",'</td>';
+                }//パラメータのみではなく日本語で
+                if($row['delete_flag'] === "0"){
+                    echo '<td>',"有効",'</td>';}else{
+                    echo '<td>',"無効",'</td>';
+                }
+                
+                $date1 = $row['registered_time'];
+                $registered_date = substr($date1,0,10);
+                echo '<td>',$registered_date,'</td>';//年月日のみ
+                
+                $date2 = $row['update_time'];
+                $update_date = substr($date2,0,10);//年月日のみ
+                echo '<td>',$update_date,'</td>';
+                
+                echo '<td>','<form action="update.php" method="post">
+            <input type="submit" name="btn_update" value="更新">
+            </form>','</td>';
+                
+                echo '<td>','<form action="delete.php" method="post">
+            <input type="submit" name="btn_delete" value="削除">
+            </form>','</td>';
+                
+                echo '</tr>';
             }
-            
             ?>
             
-            <form action="update.php" method="post">
-            <input type="submit" name="btn_submit" value="更新">
-            </form>
-            
-            <form action="delete.php" method="post">
-            <input type="submit" name="btn_submit" value="削除">
-            </form>
+            </table>
+                </div>
             
         </main>
         
