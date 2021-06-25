@@ -21,8 +21,9 @@
         </header>
         
         <main>
+            <h5>アカウント一覧画面</h5>
             <div class = "kakunin_area">
-            <table>
+            <table class="accounttable">
                 <tr>
                     <td>ID</td>
                     <td>名前（姓）</td>
@@ -35,15 +36,14 @@
                     <td>削除フラグ</td>
                     <td>登録日時</td>
                     <td>更新日時</td>
-                    <td>操作</td>
+                    <td colspan="2">操作</td>
                 </tr>
             <?php
             
             mb_internal_encoding("UTF-8");
             $pdo = new PDO("mysql:dbname=lesson01;host=localhost;","root","");
             
-            $stmt = $pdo -> query("select * from account");
-            //ここにIDを降順にするif文を追記。            
+            $stmt = $pdo -> query("select * from account ORDER BY id DESC");           
             while($row = $stmt->fetch()){
                 echo '<tr>';
                 echo '<td>',$row['id'],'</td>';
