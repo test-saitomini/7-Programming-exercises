@@ -25,18 +25,18 @@
             <div class = "kakunin_area">
             <table class="accounttable">
                 <tr>
-                    <td>ID</td>
-                    <td>名前（姓）</td>
-                    <td>名前（名）</td>
-                    <td>カナ（姓）</td>
-                    <td>カナ（名）</td>
-                    <td>メールアドレス</td>
-                    <td>性別</td>
-                    <td>アカウント権限</td>
-                    <td>削除フラグ</td>
-                    <td>登録日時</td>
-                    <td>更新日時</td>
-                    <td colspan="2">操作</td>
+                    <td class="centor">ID</td>
+                    <td class="centor">名前（姓）</td>
+                    <td class="centor">名前（名）</td>
+                    <td class="centor">カナ（姓）</td>
+                    <td class="centor"カナ（名）</td>
+                    <td class="centor">メールアドレス</td>
+                    <td class="centor">性別</td>
+                    <td class="centor">アカウント権限</td>
+                    <td class="centor">削除フラグ</td>
+                    <td class="centor">登録日時</td>
+                    <td class="centor">更新日時</td>
+                    <td class="centor" colspan="2">操作</td>
                 </tr>
             <?php
             
@@ -46,38 +46,38 @@
             $stmt = $pdo -> query("select * from account ORDER BY id DESC");           
             while($row = $stmt->fetch()){
                 echo '<tr>';
-                echo '<td>',$row['id'],'</td>';
-                echo '<td>',$row['family_name'],'</td>';
-                echo '<td>',$row['last_name'],'</td>';
-                echo '<td>',$row['family_name_kana'],'</td>';
-                echo '<td>',$row['last_name_kana'],'</td>';
-                echo '<td>',$row['mail'],'</td>';
+                echo '<td class="right">',$row['id'],'</td>';//右寄せ
+                echo '<td class="right">',$row['family_name'],'</td>';//右寄せ
+                echo '<td class="right">',$row['last_name'],'</td>';//右寄せ
+                echo '<td class="right">',$row['family_name_kana'],'</td>';//右寄せ
+                echo '<td class="right">',$row['last_name_kana'],'</td>';//右寄せ
+                echo '<td class="left">',$row['mail'],'</td>';//左寄せ
                 if($row['gender'] === "0"){
-                    echo '<td>',"男",'</td>';}else{
-                    echo '<td>',"女",'</td>';
+                    echo '<td class="centor">',"男",'</td>';}else{
+                    echo '<td class="centor">',"女",'</td>';
                 }//パラメータのみではなく日本語で
                 if($row['authority'] === "0"){
-                    echo '<td>',"一般",'</td>';}else{
-                    echo '<td>',"管理者",'</td>';
+                    echo '<td class="centor">',"一般",'</td>';}else{
+                    echo '<td class="centor">',"管理者",'</td>';
                 }//パラメータのみではなく日本語で
                 if($row['delete_flag'] === "0"){
-                    echo '<td>',"有効",'</td>';}else{
-                    echo '<td>',"無効",'</td>';
+                    echo '<td class="centor">',"有効",'</td>';}else{
+                    echo '<td class="centor">',"無効",'</td>';
                 }
                 
                 $date1 = $row['registered_time'];
                 $registered_date = substr($date1,0,10);
-                echo '<td>',$registered_date,'</td>';//年月日のみ
+                echo '<td class="centor">',$registered_date,'</td>';//年月日のみ
                 
                 $date2 = $row['update_time'];
                 $update_date = substr($date2,0,10);//年月日のみ
-                echo '<td>',$update_date,'</td>';
+                echo '<td class="centor">',$update_date,'</td>';
                 
-                echo '<td>','<form action="update.php" method="post">
+                echo '<td class="centor">','<form action="update.php" method="post">
             <input type="submit" name="btn_update" value="更新">
             </form>','</td>';
                 
-                echo '<td>','<form action="delete.php" method="post">
+                echo '<td class="centor">','<form action="delete.php" method="post">
             <input type="submit" name="btn_delete" value="削除">
             </form>','</td>';
                 

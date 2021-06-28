@@ -48,9 +48,26 @@ table.accounttable{
     margin: 20px;
 }
 
-table.accounttable td{
+table.accounttable td.centor{
     width: 100px;
     border: 1px solid #000000;
     font-size: 10px;
     vertical-align: text-top;
+    text-align:center;
+}
+
+table.accounttable td.right{
+    width: 100px;
+    border: 1px solid #000000;
+    font-size: 10px;
+    vertical-align: text-top;
+    text-align:right;
+}
+
+table.accounttable td.left{
+    width: 100px;
+    border: 1px solid #000000;
+    font-size: 10px;
+    vertical-align: text-top;
+    text-align:left;
 }
