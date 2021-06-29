@@ -70,19 +70,22 @@
                 
                 $date1 = $row['registered_time'];
                 $registered_date = substr($date1,0,10);
-                echo '<td class="centor">',$registered_date,'</td>';//年月日のみ
+                echo '<td class="centor">',$registered_date,'</td>';
                 
                 $date2 = $row['update_time'];
-                $update_date = substr($date2,0,10);//年月日のみ
+                $update_date = substr($date2,0,10);
                 echo '<td class="centor">',$update_date,'</td>';
                 
-                //各行の表に対応したボタンに変更。
-                echo '<td class="centor">','<form action="update.php" method="post">
-            <input type="submit" name="btn_update" value="更新">
+                //各行の表に対応した更新ボタン
+                echo '<form action="update.php" method="post">';
+                echo "<input type = hidden name id value=".$row['id'].">";
+                echo '<td class="centor">','<input type="submit" name="btn_update" value="更新">
             </form>','</td>';
                 
-                echo '<td class="centor">','<form action="delete.php" method="post">
-            <input type="submit" name="btn_delete" value="削除">
+                //各行の表に対応した削除ボタン
+                echo '<form action="delete.php" method="post">';
+                echo "<input type = hidden name id value=".$row['id'].">";
+                echo '<td class="centor">','<input type="submit" name="btn_delete" value="削除">
             </form>','</td>';
                 
                 echo '</tr>';
