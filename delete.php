@@ -24,12 +24,12 @@
             
             <?php
             
-            
+            $id = $_POST['id'];
             
             mb_internal_encoding("UTF-8");
             $pdo = new PDO("mysql:dbname=lesson01;host=localhost;","root","");
             
-            $stmt = $pdo -> query('select * from account where id = "6"');
+            $stmt = $pdo -> query('select * from account where id = "$id"');
             $row = $stmt->fetch();
                 
             var_dump($row);
