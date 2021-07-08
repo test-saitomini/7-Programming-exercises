@@ -24,23 +24,16 @@
             
             <?php
             
-            $(function(){
-                $('input:submit[id="id"]').click(function(){
-                    if(){
-                        
-                    }
-                });
-            });
             
             
             mb_internal_encoding("UTF-8");
             $pdo = new PDO("mysql:dbname=lesson01;host=localhost;","root","");
             
-            $sql = $pdo -> query("select * from account where id = ?");
+            $stmt = $pdo -> query('select * from account where id = "6"');
+            $row = $stmt->fetch();
+                
+            var_dump($row);
             
-            $delete = $sql->fetch();
-            echo $delete['id'];
-            echo $delete['family_name'];
             ?>
         </main>
         <footer>
