@@ -29,10 +29,11 @@
             mb_internal_encoding("UTF-8");
             $pdo = new PDO("mysql:dbname=lesson01;host=localhost;","root","");
             
-            $stmt = $pdo -> query('select * from account where id = "$id"');
-            $row = $stmt->fetch();
-                
-            var_dump($row);
+            //var_dump('select * from account where id = '.$id);
+            $stmt = $pdo -> query('select * from account where id = '.$id);
+            $delete = $stmt->fetch();
+            var_dump($delete);
+            //var_dump('select * from account where id = "$id"');
             
             ?>
         </main>
