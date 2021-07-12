@@ -86,7 +86,7 @@
                 echo '<form action="delete.php" method="post">';
                 echo '<input type = "hidden" name = "id" value="'.$row["id"].'" >';
                 //echo "<input type = hidden value=".$row["id"].">";
-                echo '<td class="centor">',$row['id'],'<input type="submit" value="削除">
+                echo '<td class="centor">','<input type="submit" value="削除">
             </form>','</td>';
                 
                 echo '</tr>';
