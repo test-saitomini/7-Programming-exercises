@@ -35,48 +35,51 @@
             //var_dump($delete);
             //var_dump('select * from account where id = "$id"');
             ?>
-            
-            <p>名前（姓）
+            <form action="delete_confirm.php" method="post">
+            <p><label>名前（姓）</label>
             <?php echo $delete['family_name']; ?></p>
             
-            <p>名前（名）
+            <p><label>名前（名）</label>
             <?php echo $delete['last_name']; ?></p>
             
-            <p>カナ（姓）
+            <p><label>カナ（姓）</label>
             <?php echo $delete['family_name_kana']; ?></p>
             
-            <p>カナ（名）
+            <p><label>カナ（名）</label>
             <?php echo $delete['last_name_kana']; ?></p>
             
-            <p>メールアドレス
+            <p><label>メールアドレス</label>
             <?php echo $delete['mail']; ?></p>
             
-            <p>パスワード
+            <p><label>パスワード</label>
             <?php
             $password = $delete['password'];
             for($i=0;$i< mb_strlen($password);$i++){
-            echo '●';}?></p><!--ハッシュ化されているのでそれを解除しなきゃいけない-->
+            echo '●';}?></p><?--ハッシュ化されているのでユーザーが混乱しないような表示にする -->
             
-            <p>性別
+            <p><label>性別</label>
             <?php if( $delete['gender'] === "0" ){echo '男性'; 
                 }else{ echo '女性'; } ?></p>
             
-            <p>郵便番号
+            <p><label>郵便番号</label>
             <?php echo $delete['postal_code']; ?></p>
             
-            <p>住所（都道府県）
+            <p><label>住所（都道府県）</label>
             <?php echo $delete['prefecture']; ?></p>
             
-            <p>住所（市区町村）
+            <p><label>住所（市区町村）</label>
             <?php echo $delete['address_1']; ?></p>
             
-            <p>住所（番地）
+            <p><label>住所（番地）</label>
             <?php echo $delete['address_2']; ?></p>
             
-            <p>アカウント権限
+            <p><label>アカウント権限</label>
             <?php if($delete['authority']==="0"){ echo'一般';
                 }else{ echo '管理者'; }?></p> 
-            
+                
+                <input type="submit" id="btn_dlete_confirm" value="確認する">
+                <input type="hidden" name = "id" value="<?php echo $_POST['id'];?>">
+            </form>
         </main>
         <footer>
             Copyright D.I.Works| D.I.blog is the one which provides Ato Z about programming
