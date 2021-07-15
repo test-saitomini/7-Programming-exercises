@@ -52,10 +52,11 @@
             <?php echo $delete['mail']; ?></p>
             
             <p><label>パスワード</label>
+            <br><h7>※セキュリティ上、パスワードを変更しています。</h7>
             <?php
             $password = $delete['password'];
             for($i=0;$i< mb_strlen($password);$i++){
-            echo '●';}?></p><?--ハッシュ化されているのでユーザーが混乱しないような表示にする -->
+            echo '●';} ?> </p>
             
             <p><label>性別</label>
             <?php if( $delete['gender'] === "0" ){echo '男性'; 
