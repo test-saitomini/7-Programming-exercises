@@ -52,7 +52,7 @@
             <?php echo $delete['mail']; ?></p>
             
             <p><label>パスワード</label>
-            <br><h7>※セキュリティ上、パスワードを変更しています。</h7>
+            <br><h7>※セキュリティ上、パスワードを暗号化しています。</h7>
             <?php
             $password = $delete['password'];
             for($i=0;$i< mb_strlen($password);$i++){
