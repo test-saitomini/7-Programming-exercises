@@ -21,7 +21,8 @@
         </header>
         
         <main>
-            <h5>本当に削除してよろしいですか？</h5>
+            <div class="kakunin">
+            <h4>本当に削除してよろしいですか？</h4>
             
             <input type="submit" onclick=history.back() value="戻って修正する">
             
@@ -31,6 +32,7 @@
                 <input type="hidden" value="1" name="delete_flag">
                 
             </form>
+            </div>
         </main>
         
                 <footer>

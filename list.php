@@ -78,8 +78,8 @@
                 
                 //各行の表に対応した更新ボタン
                 echo '<form action="update.php" method="post">';
-                //echo "<input type = hidden  value=".$row["id"].">";
-                echo '<td class="centor">','<input type="submit" id="btn_update" value="更新">
+                echo '<input type = "hidden" name = "id" value="'.$row["id"].'">';
+                echo '<td class="centor">','<input type="submit" value="更新">
             </form>','</td>';
                 
                 //各行の表に対応した削除ボタン
