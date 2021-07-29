@@ -53,8 +53,11 @@
         
         <p>性別
         <br>
-        <?php if( $_POST['gender'] === "0" ){ echo '男性'; }
-		else{ echo '女性'; } ?></p>
+        <?php if( $_POST['gender'] === "0" ){
+            echo '男性'; 
+        }else{
+            echo '女性'; 
+        } ?></p>
         
         <p>郵便番号
         <br>
@@ -75,8 +78,11 @@
         
         <p>アカウント権限
         <br>
-        <?php if($_POST['authority']==="0"){ echo'一般';}
-            else{ echo '管理者'; }?>
+        <?php if($_POST['authority']==="0"){
+            echo'一般';
+        }else{
+            echo '管理者'; 
+        }?>
         </p>
         
         <input type="submit" onclick=history.back() value="戻って修正する">

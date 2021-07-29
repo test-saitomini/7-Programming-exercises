@@ -53,8 +53,11 @@
         
         <p>性別
         <br>
-        <?php if( $_POST['gender'] === "0" ){ echo '男性'; }
-		else{ echo '女性'; } ?></p>
+        <?php if( $_POST['gender'] === "0" ){
+            echo '男性';
+        }else{
+            echo '女性'; 
+        }?></p>
         
         <p>郵便番号
         <br>
@@ -62,7 +65,16 @@
         </p>
         <p>住所（都道府県）
         <br>
-        <?php echo $_POST['prefecture'];?>
+        <?php
+            $prefecture_list = Array('北海道','青森県','岩手県','宮城県','秋田県','山形県','福島県','茨城県','栃木県','群馬県','埼玉県','千葉県','東京都','神奈川県','山梨県','長野県','新潟県','富山県','石川県','福井県','岐阜県','静岡県','愛知県','三重県','滋賀県','京都府','大阪府','兵庫県','奈良県','和歌山県','鳥取県','島根県','岡山県','広島県','山口県','徳島県','香川県','愛媛県','高知県','福岡県','佐賀県','長崎県','熊本県','大分県','宮崎県','鹿児島県','沖縄県');
+            
+            foreach($prefecture_list as $key => $prefecture){
+                if(!empty($_POST['prefecture'])){
+                    if($key === $_POST['prefecture']){
+                        echo ;
+                    }
+                }
+            } ?>
         </p>
         <p>住所（市区町村）
         <br>
@@ -75,13 +87,16 @@
         
         <p>アカウント権限
         <br>
-        <?php if($_POST['authority']==="0"){ echo'一般';}
-            else{ echo '管理者'; }?>
+        <?php if($_POST['authority']==="0"){
+            echo'一般';
+        }else{
+            echo '管理者'; 
+        }?>
         </p>
         
         <input type="submit" onclick=history.back() value="戻って修正する">
             
-        <form action="regist_complete.php" method="post">
+        <form action="update_complete.php" method="post">
             <input type="submit" name="btn_submit" value="登録する">
             <input type="hidden" value="<?php echo $_POST['family_name'];?>" name="family_name">
             <input type="hidden" value="<?php echo $_POST['last_name'];?>" name="last_name">
