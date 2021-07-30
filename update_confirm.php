@@ -73,7 +73,7 @@
                 if(!empty($_POST['prefecture'])){
                     if($key == $_POST['prefecture']){
                         echo $prefecture;
-                        //$prefecture == $_POST['prefecture'];
+                        $_POST['prefecture'] = $prefecture;
                     }
                 }
             }
