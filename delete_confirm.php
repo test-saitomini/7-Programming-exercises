@@ -11,11 +11,11 @@
     <body>
         <header>
             <ul>
-                <li><a href = "http://localhost/account/regist.html">トップ</a></li>
+                <li><a href = "http://localhost/7-Programming-exercises/regist.html">トップ</a></li>
                 <li>プロフィール</li>
-                <li><a href = "http://localhost/account/regist.php">アカウント登録</a></li>
+                <li><a href = "http://localhost/7-Programming-exercises/regist.php">アカウント登録</a></li>
                 <li>問い合わせ</li>
-                <li><a href = "http://localhost/account/list.php">アカウント一覧</a></li>
+                <li><a href = "http://localhost/7-Programming-exercises/list.php">アカウント一覧</a></li>
                 <li>その他</li>
             </ul>
         </header>
