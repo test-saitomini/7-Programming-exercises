@@ -2,7 +2,7 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <title>アカウント登録確認画面</title>
+        <title>アカウント更新確認画面</title>
         <link rel="stylesheet"type="text/css"href="regist.css">
     </head>
     
@@ -101,6 +101,7 @@
             
         <form action="update_complete.php" method="post">
             <input type="submit" name="btn_submit" value="登録する">
+            <input type="hidden" name = "id" value="<?php echo $_POST['id'];?>">
             <input type="hidden" value="<?php echo $_POST['family_name'];?>" name="family_name">
             <input type="hidden" value="<?php echo $_POST['last_name'];?>" name="last_name">
             <input type="hidden" value="<?php echo $_POST['family_name_kana'];?>" name="family_name_kana">

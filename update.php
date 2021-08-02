@@ -34,6 +34,7 @@
             ?>
             
             <form action="update_confirm.php" method="post">
+                <input type="hidden" name = "id" value="<?php echo $_POST['id'];?>">
             <div class="textarea">
                         <label>名前（姓）</label>
                         <input type="text"class="text"size="10"name="family_name"id="family_name"value="<?php if( !empty($update['family_name']) ){ echo $update['family_name']; } ?>"><br>
