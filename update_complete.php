@@ -22,11 +22,9 @@ $delete_flag = $_POST['delete_flag'];
 
 $pdo = new PDO("mysql:dbname=lesson01;host=localhost;","root","");
 
-$stmt = $pdo->prepare("UPDATE account SET family_name = $family_name,last_name = $last_name,family_name_kana = $family_name_kana,last_name_kana =  $last_name_kana,mail = $mail,password = $password,gender = $gender,postal_code = $postal_code,prefecture = $prefecture,address_1 = $address_1,address_2 = $address_2,authority = $authority,delete_flag = $delete_flag where id = $id");
+$stmt = $pdo->prepare("UPDATE account SET family_name = ?,last_name = ?,family_name_kana = ?,last_name_kana = ?,mail = ?,password = ?,gender = ?,postal_code = ?,prefecture = ?,address_1 = ?,address_2 = ?,authority = ?,delete_flag = ?,update_time = ? where id = $id");
 
-$registered_time = $_POST['registered_time'];
-
-$stmt ->exec("family_name,last_name,family_name_kana,last_name_kana,mail,password,gender,postal_code,prefecture,address_1,address_2,authority,delete_flag,registered_time,update_time)values('".$family_name."','".$last_name."','".$family_name_kana."','".$last_name_kana."','".$mail."','".$password."','".$gender."','".$postal_code."','".$prefecture."','".$address_1."','".$address_2."','".$authority."','".$delete_flag."','".$registered_time."','".date('Y-m-d H:i:s')."');");
+$stmt ->execute(array($family_name,$last_name,$family_name_kana,$last_name_kana,$mail,$password,$gender,$postal_code,$prefecture,$address_1,$address_2,$authority,$delete_flag,date('Y-m-d H:i:s')));
 
 ?>
 

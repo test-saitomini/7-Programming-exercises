@@ -40,6 +40,7 @@ function input_check(){
     var family_name_kana   = $("#family_name_kana").val();
 	var last_name_kana  = $("#last_name_kana").val();
 	var mail = $("#mail").val();
+    var password_check = $("password_check").val();
 	var password  = $("#password").val();
 	var postal_code  = $("#postal_code").val();
     var prefecture  = $("#prefecture").val();
@@ -117,6 +118,7 @@ function input_check(){
 		result = false;
 	}
     //パスワード
+    if(password_check == undefined || password_check == true){
     if(password == ""){
 		$("#password_error").html(" パスワードが未入力です。");
 		$("#password").addClass("inp_error");
@@ -129,6 +131,7 @@ function input_check(){
         $("#password_error").html(" パスワードは半角英数字で入力してください。");
 		$("#password").addClass("inp_error");
 		result = false;
+    }
     }
     //郵便番号
     if(postal_code == ""){
