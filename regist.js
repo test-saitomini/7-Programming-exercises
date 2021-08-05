@@ -40,13 +40,11 @@ function input_check(){
     var family_name_kana   = $("#family_name_kana").val();
 	var last_name_kana  = $("#last_name_kana").val();
 	var mail = $("#mail").val();
-    var password_check = $("password_check").val();
 	var password  = $("#password").val();
 	var postal_code  = $("#postal_code").val();
     var prefecture  = $("#prefecture").val();
 	var address_1  = $("#address_1").val();
     var address_2  = $("#address_2").val();
-    
 
 	// 入力内容チェック
 	// お名前
@@ -118,7 +116,16 @@ function input_check(){
 		result = false;
 	}
     //パスワード
-    if(password_check == undefined || password_check == true){
+    $("#password_check").on("click", function(){
+  if($(this).prop("checked") == true){
+    $("#poss").text("true");
+  }else{
+    $("#poss").text("false");
+  }
+    });
+    
+
+    if(typeof password_check === 'undefined' || typeof password_check === 'true') {
     if(password == ""){
 		$("#password_error").html(" パスワードが未入力です。");
 		$("#password").addClass("inp_error");
