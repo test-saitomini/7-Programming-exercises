@@ -33,7 +33,7 @@
             $update = $stmt->fetch();
             ?>
             
-            <form action="update_confirm.php" method="post">
+            <form action="update_confirm.php" method="post" name = "update">
                 <input type="hidden" name = "id" value="<?php echo $_POST['id'];?>">
             <div class="textarea">
                         <label>名前（姓）</label>
@@ -63,7 +63,6 @@
                     <div class="textarea">
                         <label>パスワード</label><br>
                         <input type = "checkbox" name = "password_check" id = "password_check">※パスワードを変更する場合は左のチェックボックスにチェックをしてください。<br>
-                        <p id="poss"></p>
                         <!--変更したいのと変更したくない場合どのようにすべきか -->
                         <input type="text"class="text" size="10"name="password"id="password"value="<?php if( !empty($_POST['password']) ){ echo $_POST['password']; } ?>"><br>
                         <span id = 'password_error' class="error_m"></span>

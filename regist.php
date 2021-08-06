@@ -50,6 +50,7 @@
                     </div>
                     <div class="textarea">
                         <label>パスワード</label>
+                        <label class = "pass_check"><input type="checkbox" id = "password_check" checked></label>
                         <input type="text"class="text" size="10"name="password"id="password"value="<?php if( !empty($_POST['password']) ){ echo $_POST['password']; } ?>"><br>
                         <span id = 'password_error' class="error_m"></span><br>
                     </div>

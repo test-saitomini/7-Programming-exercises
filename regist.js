@@ -116,16 +116,7 @@ function input_check(){
 		result = false;
 	}
     //パスワード
-    $("#password_check").on("click", function(){
-  if($(this).prop("checked") == true){
-    $("#poss").text("true");
-  }else{
-    $("#poss").text("false");
-  }
-    });
-    
-
-    if(typeof password_check === 'undefined' || typeof password_check === 'true') {
+    if(document.getElementById("password_check").checked){
     if(password == ""){
 		$("#password_error").html(" パスワードが未入力です。");
 		$("#password").addClass("inp_error");

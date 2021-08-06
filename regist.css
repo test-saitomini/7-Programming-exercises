@@ -25,6 +25,10 @@ footer{float:left;
     line-height: 60px;
 }
 
+/*regist.phpでチェックしたままチェックボックスを表示させない（追記2021/08/06）*/
+.pass_check{
+    display: none;
+}
 /*regist.jsの赤文字エラーの表示*/
 span.error_m {
     font-size: 15px;

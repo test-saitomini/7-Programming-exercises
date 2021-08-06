@@ -9,11 +9,8 @@ $last_name = $_POST['last_name'];
 $family_name_kana = $_POST['family_name_kana'];
 $last_name_kana = $_POST['last_name_kana'];
 $mail = $_POST['mail'];
-if($_POST['password'] == ""){
-    $password2 = $_POST['password'];
-}else{
-    $password = password_hash($_POST['password'],PASSWORD_ARGON2ID);
-}
+//これだとパスワードが毎回変わってしまう
+$password = password_hash($_POST['password'],PASSWORD_ARGON2ID);
 $gender = $_POST['gender'];
 $postal_code = $_POST['postal_code'];
 $prefecture = $_POST['prefecture'];
