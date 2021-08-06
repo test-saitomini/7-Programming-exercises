@@ -45,6 +45,7 @@ function input_check(){
     var prefecture  = $("#prefecture").val();
 	var address_1  = $("#address_1").val();
     var address_2  = $("#address_2").val();
+    var password_check;
 
 	// 入力内容チェック
 	// お名前
@@ -116,7 +117,9 @@ function input_check(){
 		result = false;
 	}
     //パスワード
-    if(document.getElementById("password_check").checked){
+    //alert(document.getElementById("password_check"));
+    //alert(document.getElementById("password_check").checked);
+    if(document.getElementById("password_check") === null || document.getElementById("password_check").checked){
     if(password == ""){
 		$("#password_error").html(" パスワードが未入力です。");
 		$("#password").addClass("inp_error");
