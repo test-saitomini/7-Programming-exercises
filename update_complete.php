@@ -9,8 +9,7 @@ $last_name = $_POST['last_name'];
 $family_name_kana = $_POST['family_name_kana'];
 $last_name_kana = $_POST['last_name_kana'];
 $mail = $_POST['mail'];
-//これだとパスワードが毎回変わってしまう
-$password = password_hash($_POST['password'],PASSWORD_ARGON2ID);
+$password = $_POST['password'];
 $gender = $_POST['gender'];
 $postal_code = $_POST['postal_code'];
 $prefecture = $_POST['prefecture'];
@@ -23,9 +22,9 @@ $delete_flag = $_POST['delete_flag'];
 
 $pdo = new PDO("mysql:dbname=lesson01;host=localhost;","root","");
 
-$stmt = $pdo->prepare("UPDATE account SET family_name = ?,last_name = ?,family_name_kana = ?,last_name_kana = ?,mail = ?,password = ?,gender = ?,postal_code = ?,prefecture = ?,address_1 = ?,address_2 = ?,authority = ?,delete_flag = ?,update_time = ? where id = $id");
+$stmt = $pdo->prepare("UPDATE account SET family_name = ?,last_name = ?,family_name_kana = ?,last_name_kana = ?,mail = ?,password = ?,gender = ?,postal_code = ?,prefecture = ?,address_1 = ?,address_2 = ?,authority = ?,delete_flag = ?,update_time = ? where id = $id AND password IS NOT NULL");
 
-$stmt ->execute(array($family_name,$last_name,$family_name_kana,$last_name_kana,$mail,$password,$gender,$postal_code,$prefecture,$address_1,$address_2,$authority,$delete_flag,date('Y-m-d H:i:s')));
+$stmt ->execute(array($family_name,$last_name,$family_name_kana,$last_name_kana,$mail,password_hash($password,PASSWORD_ARGON2ID),$gender,$postal_code,$prefecture,$address_1,$address_2,$authority,$delete_flag,date('Y-m-d H:i:s')));
 
 ?>
 
