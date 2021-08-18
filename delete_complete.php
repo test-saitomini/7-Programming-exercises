@@ -1,13 +1,16 @@
 <?php
 mb_language('ja');
 mb_internal_encoding("UTF-8");
+date_default_timezone_set('Asia/Tokyo');
 
 $id = $_POST['id'];
 $delete_flag = $_POST['delete_flag'];
 
 $pdo = new PDO("mysql:dbname=lesson01;host=localhost;","root","");
 
-$stmt = $pdo->query("UPDATE account SET delete_flag = $delete_flag where id = $id");
+$stmt = $pdo->prepare("UPDATE account SET delete_flag = ?,update_time = ? where id = $id");
+
+$stmt ->execute(array($delete_flag,date('Y-m-d H:i:s')));
 
 ?>
 
