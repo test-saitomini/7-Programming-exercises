@@ -5,12 +5,27 @@ date_default_timezone_set('Asia/Tokyo');
 
 $id = $_POST['id'];
 $delete_flag = $_POST['delete_flag'];
+$delete_erorr_message = "<span style='color:red'>エラーが発生したためアカウント削除ができません。</span>";
 
-$pdo = new PDO("mysql:dbname=lesson01;host=localhost;","root","");
+try{
+    $pdo = new PDO("mysql:dbname=lesson01;host=localhost;","root","");
+}catch(PDOException $Exception){
+    die($delete_erorr_message);
+}
+/*$pdo = new PDO("mysql:dbname=lesson01;host=localhost;","root","");*/
 
-$stmt = $pdo->prepare("UPDATE account SET delete_flag = ?,update_time = ? where id = $id");
-
-$stmt ->execute(array($delete_flag,date('Y-m-d H:i:s')));
+try{
+    $stmt = $pdo->prepare("UPDATE account SET delete_flag = ?,update_time = ? where id = $id");
+}catch(PDOException $Exception){
+    die($delete_erorr_message);
+}
+/*$stmt = $pdo->prepare("UPDATE account SET delete_flag = ?,update_time = ? where id = $id");*/
+try{
+    $stmt ->execute(array($delete_flag,date('Y-m-d H:i:s')));
+}catch(PDOException $Exception){
+    die($delete_erorr_message);
+}
+/*$stmt ->execute(array($delete_flag,date('Y-m-d H:i:s')));*/
 
 ?>
 

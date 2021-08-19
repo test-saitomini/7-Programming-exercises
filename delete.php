@@ -63,6 +63,7 @@
                 }else{ echo '女性'; } ?></p>
             
             <p><label>郵便番号</label>
+                <!--0ずめしたい -->
             <?php echo $delete['postal_code']; ?></p>
             
             <p><label>住所（都道府県）</label>

@@ -76,6 +76,7 @@
                     </div>
                     <div class="textarea">
                         <label>郵便番号</label>
+                        <!--0ずめしたい -->
                         <input type="text"class="text" size="7"name="postal_code"id="postal_code"value="<?php if( !empty($update['postal_code']) ){ echo $update['postal_code']; } ?>"><br>
                         <span id = 'postal_code_error' class="error_m"></span><br>
                     </div>
