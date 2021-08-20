@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="regist.css">
 <?php
 mb_language('ja');
 mb_internal_encoding("UTF-8");
@@ -18,24 +19,24 @@ $address_2 = $_POST['address_2'];
 $authority = $_POST['authority'];
 $delete_flag = $_POST['delete_flag'];
 
-$update_erorr_message = "<span style='color:red'>エラーが発生したためアカウント更新ができません。</span>";
+$update_erorr_message = "<span class='erorr'>エラーが発生したためアカウント更新ができません。</span>";
 
 try{
     $pdo = new PDO("mysql:dbname=lesson01;host=localhost;","root","");
 }catch(PDOException $Exception){
-    die($update_erorr_message);
+    die($update_erorr_message.'<br><span class="erorr">'.$Exception->getMessage().'</span>');
 }
 
 try{
     $stmt = $pdo->prepare("UPDATE account SET family_name = ?,last_name = ?,family_name_kana = ?,last_name_kana = ?,mail = ?,password = ?,gender = ?,postal_code = ?,prefecture = ?,address_1 = ?,address_2 = ?,authority = ?,delete_flag = ?,update_time = ? where id = $id AND password IS NOT NULL");
 }catch(PDOException $Exception){
-    die($update_erorr_message);
+    die($update_erorr_message.'<br><span class="erorr">'.$Exception->getMessage().'</span>');
 }
 
 try{
     $stmt ->execute(array($family_name,$last_name,$family_name_kana,$last_name_kana,$mail,password_hash($password,PASSWORD_ARGON2ID),$gender,$postal_code,$prefecture,$address_1,$address_2,$authority,$delete_flag,date('Y-m-d H:i:s')));
 }catch(PDOException $Exception){
-    die($update_erorr_message);
+    die($update_erorr_message.'<br><span class="erorr">'.$Exception->getMessage().'</span>');
 }
 
 

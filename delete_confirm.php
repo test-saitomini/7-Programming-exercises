@@ -2,7 +2,7 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <title>アカウント削除画面</title>
+        <title>アカウント削除確認画面</title>
         <link rel="stylesheet"type="text/css"href="regist.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         
