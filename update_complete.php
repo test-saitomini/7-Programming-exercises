@@ -19,7 +19,7 @@ $address_2 = $_POST['address_2'];
 $authority = $_POST['authority'];
 $delete_flag = $_POST['delete_flag'];
 
-$update_erorr_message = "<span class='erorr'>エラーが発生したためアカウント更新ができません。</span>";
+$update_erorr_message = "<span class='erorr'>エラーが発生したためアカウント更新ができません。</span>";//20210820　エラー文追加
 
 try{
     $pdo = new PDO("mysql:dbname=lesson01;host=localhost;","root","");

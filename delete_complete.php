@@ -6,7 +6,7 @@ date_default_timezone_set('Asia/Tokyo');
 
 $id = $_POST['id'];
 $delete_flag = $_POST['delete_flag'];
-$delete_erorr_message = "<span class='erorr'>エラーが発生したためアカウント削除ができません。</span>";
+$delete_erorr_message = "<span class='erorr'>エラーが発生したためアカウント削除ができません。</span>";//20210820　エラー文追加
 
 try{
     $pdo = new PDO("mysql:dbname=lesson0;host=localhost;","root","");
