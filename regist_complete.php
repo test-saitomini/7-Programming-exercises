@@ -1,19 +1,20 @@
+<link rel="stylesheet" href="regist.css">
 <?php
 mb_language('ja');
 mb_internal_encoding("UTF-8");
 date_default_timezone_set('Asia/Tokyo');//日本時間へ変更（20210622）
-$error_message = "<span style='color:red'>エラーが発生したためアカウント登録できません。</span>";
+$error_message = "<span class='erorr'>エラーが発生したためアカウント登録できません。</span>";
 
 try{
     $pdo = new PDO("mysql:dbname=lesson01;host=localhost;","root","");
 }catch(PDOException $Exception){
-    die($erorr_message);
+    die($erorr_message.'<br><span class="erorr">'.$Exception->getMessage().'</span>');//20210820　エラー文追加
 }
 
 try{
     $pdo -> exec("insert into account(family_name,last_name,family_name_kana,last_name_kana,mail,password,gender,postal_code,prefecture,address_1,address_2,authority,delete_flag,registered_time,update_time)values('".$_POST['family_name']."','".$_POST['last_name']."','".$_POST['family_name_kana']."','".$_POST['last_name_kana']."','".$_POST['mail']."','".password_hash($_POST['password'],PASSWORD_DEFAULT)."','".$_POST['gender']."','".$_POST['postal_code']."','".$_POST['prefecture']."','".$_POST['address_1']."','".$_POST['address_2']."','".$_POST['authority']."','".$_POST['delete_flag']."','".date('Y-m-d H:i:s')."','".date('Y-m-d H:i:s')."');");
 }catch(PDOException $Exception){
-    die($erorr_message);
+    die($erorr_message.'<br><span class="erorr">'.$Exception->getMessage().'</span>');
 }
 
 ?>
