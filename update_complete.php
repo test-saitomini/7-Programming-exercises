@@ -1,4 +1,3 @@
-<link rel="stylesheet" href="regist.css">
 <?php
 mb_language('ja');
 mb_internal_encoding("UTF-8");
@@ -19,24 +18,26 @@ $address_2 = $_POST['address_2'];
 $authority = $_POST['authority'];
 $delete_flag = $_POST['delete_flag'];
 
-$update_erorr_message = "<span class='erorr'>エラーが発生したためアカウント更新ができません。</span>";//20210820　エラー文追加
-
 try{
     $pdo = new PDO("mysql:dbname=lesson01;host=localhost;","root","");
 }catch(PDOException $Exception){
-    die($update_erorr_message.'<br><span class="erorr">'.$Exception->getMessage().'</span>');
+    $update_erorr_message = $Exception->getMessage();
 }
 
 try{
+    if(empty($update_erorr_message)){
     $stmt = $pdo->prepare("UPDATE account SET family_name = ?,last_name = ?,family_name_kana = ?,last_name_kana = ?,mail = ?,password = ?,gender = ?,postal_code = ?,prefecture = ?,address_1 = ?,address_2 = ?,authority = ?,delete_flag = ?,update_time = ? where id = $id AND password IS NOT NULL");
+    }
 }catch(PDOException $Exception){
-    die($update_erorr_message.'<br><span class="erorr">'.$Exception->getMessage().'</span>');
+    $update_erorr_message = $Exception->getMessage();
 }
 
 try{
+    if(empty($update_erorr_message)){
     $stmt ->execute(array($family_name,$last_name,$family_name_kana,$last_name_kana,$mail,password_hash($password,PASSWORD_ARGON2ID),$gender,$postal_code,$prefecture,$address_1,$address_2,$authority,$delete_flag,date('Y-m-d H:i:s')));
+    }
 }catch(PDOException $Exception){
-    die($update_erorr_message.'<br><span class="erorr">'.$Exception->getMessage().'</span>');
+    $update_erorr_message = $Exception->getMessage();
 }
 
 
@@ -49,13 +50,31 @@ try{
         <title>アカウント更新完了画面</title>
         <link rel="stylesheet"type="text/css" href="regist.css">
     </head>
+    <header>
+            <ul>
+                <li><a href = "http://localhost/7-Programming-exercises/regist.html">トップ</a></li>
+                <li>プロフィール</li>
+                <li><a href = "http://localhost/7-Programming-exercises/regist.php">アカウント登録</a></li>
+                <li>問い合わせ</li>
+                <li><a href = "http://localhost/7-Programming-exercises/list.php">アカウント一覧</a></li>
+                <li>その他</li>
+            </ul>
+        </header>
     <body>
         <div class="back-top">
-            <h4>更新完了しました。</h4>
+            <?php if(!empty($update_erorr_message)){
+                echo '<h7>エラーが発生したためアカウント更新できません。<br>
+            '.$update_erorr_message.'</h7>';
+            }else{
+                echo '<h4>更新完了しました。</h4>';
+            };?>
              <form action="regist.html" method="post">
             <input type="submit" class="button2" value="TOPページに戻る">
             </form>
         </div>
     </body>
+    <footer>
+            Copyright D.I.Works| D.I.blog is the one which provides Ato Z about programming
+    </footer>
     
 </html>

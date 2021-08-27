@@ -45,15 +45,19 @@ try{
 }
 
 try{
+    if(empty($delete_erorr_message)){
     $stmt = $pdo->prepare("UPDATE account SET delete_flag = ?,update_time = ? where id = $id");
+    }
 }catch(PDOException $Exception){
     $delete_erorr_message = $Exception->getMessage();
 }
 
 try{
-    $stmt ->execute(array($delete_flag,date('Y-m-d H:i:s')));
+    if(empty($delete_erorr_message)){
+        $stmt ->execute(array($delete_flag,date('Y-m-d H:i:s')));
+    }
     
-}catch(PDOException $Exception){
+    }catch(PDOException $Exception){
     $delete_erorr_message = $Exception->getMessage();
 }
 /*
