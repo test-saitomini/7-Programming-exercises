@@ -5,11 +5,13 @@ date_default_timezone_set('Asia/Tokyo');
 
 $id = $_POST['id'];
 $delete_flag = $_POST['delete_flag'];
+$erorr_flag = 0;
 
 try{
     $pdo = new PDO("mysql:dbname=lesson01;host=localhost;","root","");
 }catch(PDOException $Exception){
     $delete_erorr_message = $Exception->getMessage();
+    $erorr_flag = 1;
     /*$abc = '<!DOCTYPE HTML>
 <html lang="ja">
     <head>
@@ -50,6 +52,7 @@ try{
     }
 }catch(PDOException $Exception){
     $delete_erorr_message = $Exception->getMessage();
+    $erorr_flag = 1;
 }
 
 try{
@@ -59,6 +62,7 @@ try{
     
     }catch(PDOException $Exception){
     $delete_erorr_message = $Exception->getMessage();
+    $erorr_flag = 1;
 }
 /*
 echo '<!DOCTYPE HTML>
@@ -111,7 +115,7 @@ echo '<!DOCTYPE HTML>
         </header>
     <body>
         <div class="back-top">
-            <?php if(!empty($delete_erorr_message)){
+            <?php if($erorr_flag == 1){
                 echo '<h7>エラーが発生したためアカウント削除できません。<br>
             '.$delete_erorr_message.'</h7>';
             }else{

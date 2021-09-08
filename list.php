@@ -79,15 +79,27 @@
                 //各行の表に対応した更新ボタン
                 echo '<form action="update.php" method="post">';
                 echo '<input type = "hidden" name = "id" value="'.$row["id"].'">';
-                echo '<td class="centor">','<input type="submit" value="更新">
+                if($row['delete_flag']== 1){
+                    echo '<td class="centor">','<input type="submit" value="更新" disabled>
             </form>','</td>';
+                }else{
+                    echo '<td class="centor">','<input type="submit" value="更新">
+            </form>','</td>';
+                };
+                
                 
                 //各行の表に対応した削除ボタン
                 echo '<form action="delete.php" method="post">';
                 echo '<input type = "hidden" name = "id" value="'.$row["id"].'" >';
                 //echo "<input type = hidden value=".$row["id"].">";
-                echo '<td class="centor">','<input type="submit" value="削除">
+                if($row['delete_flag']== 1){
+                    echo '<td class="centor">','<input type="submit" value="削除"disabled>
             </form>','</td>';
+                }else{
+                    echo '<td class="centor">','<input type="submit" value="削除">
+            </form>','</td>';
+                }
+                
                 
                 echo '</tr>';
             }

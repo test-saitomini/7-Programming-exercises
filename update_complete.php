@@ -17,11 +17,13 @@ $address_1 = $_POST['address_1'];
 $address_2 = $_POST['address_2'];
 $authority = $_POST['authority'];
 $delete_flag = $_POST['delete_flag'];
+$erorr_flag = 0;
 
 try{
     $pdo = new PDO("mysql:dbname=lesson01;host=localhost;","root","");
 }catch(PDOException $Exception){
     $update_erorr_message = $Exception->getMessage();
+    $erorr_flag = 1;
 }
 
 try{
@@ -30,6 +32,7 @@ try{
     }
 }catch(PDOException $Exception){
     $update_erorr_message = $Exception->getMessage();
+    $erorr_flag = 1;
 }
 
 try{
@@ -38,6 +41,7 @@ try{
     }
 }catch(PDOException $Exception){
     $update_erorr_message = $Exception->getMessage();
+    $erorr_flag = 1;
 }
 
 
@@ -62,7 +66,7 @@ try{
         </header>
     <body>
         <div class="back-top">
-            <?php if(!empty($update_erorr_message)){
+            <?php if($erorr_flag == 1){
                 echo '<h7>エラーが発生したためアカウント更新できません。<br>
             '.$update_erorr_message.'</h7>';
             }else{

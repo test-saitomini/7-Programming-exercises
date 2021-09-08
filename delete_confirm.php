@@ -24,7 +24,7 @@
             <div class="kakunin">
             <h4>本当に削除してよろしいですか？</h4>
             
-            <input type="submit" onclick=history.back() value="戻って修正する">
+            <input type="submit" onclick=history.back() value="前に戻る">
             
             <form action="delete_complete.php" method="post">
                 <input type="submit" name="delete_submit" value="登録する">

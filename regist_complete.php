@@ -2,11 +2,13 @@
 mb_language('ja');
 mb_internal_encoding("UTF-8");
 date_default_timezone_set('Asia/Tokyo');//日本時間へ変更（20210622）
+$erorr_flag = 0;
 
 try{
     $pdo = new PDO("mysql:dbname=lesson01;host=localhost;","root","");
 }catch(PDOException $Exception){
     $erorr_message = $Exception->getMessage();
+    $erorr_flag = 1;
 }
 
 try{
@@ -15,6 +17,7 @@ try{
     }
 }catch(PDOException $Exception){
     $erorr_message = $Exception->getMessage();
+    $erorr_flag = 1;
 }
 
 ?>
@@ -38,7 +41,7 @@ try{
         </header>
     <body>
         <div class="back-top">
-            <?php if(!empty($erorr_message)){
+            <?php if($erorr_flag == 1){
                 echo '<h7>エラーが発生したためアカウント登録できません。<br>
             '.$erorr_message.'</h7>';
             }else{

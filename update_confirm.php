@@ -46,9 +46,14 @@
         <p>パスワード
         <br>
         <?php
-            $password = $_POST['password'];
+            if(!empty($_POST['password'])){
+                $password = $_POST['password'];
             for($i=0;$i< mb_strlen($password);$i++){
-            echo '●';}?>
+            echo '●';}
+            }else{
+                echo '<h7>パスワードは変更されません。</h7>';
+            }
+            ?>
         </p>
         
         <p>性別
@@ -97,7 +102,7 @@
         }?>
         </p>
         
-        <input type="submit" onclick=history.back() value="戻って修正する">
+        <input type="submit" onclick=history.back() value="前に戻る">
             
         <form action="update_complete.php" method="post">
             <input type="submit" name="btn_submit" value="登録する">
