@@ -46,12 +46,15 @@
         <p>パスワード
         <br>
         <?php
-            if(!empty($_POST['password'])){
+            
+            if(isset($_POST['password_check'])){
                 $password = $_POST['password'];
             for($i=0;$i< mb_strlen($password);$i++){
             echo '●';}
+                $_POST['password_check'] = 1;
             }else{
                 echo '<h7>パスワードは変更されません。</h7>';
+                $_POST['password_check'] = 0;
             }
             ?>
         </p>
@@ -112,6 +115,7 @@
             <input type="hidden" value="<?php echo $_POST['family_name_kana'];?>" name="family_name_kana">
             <input type="hidden" value="<?php echo $_POST['last_name_kana'];?>" name="last_name_kana">
             <input type="hidden" value="<?php echo $_POST['mail'];?>" name="mail">
+            <input type="hidden" value="<?php echo $_POST['password_check'];?>" name="password_check">
             <input type="hidden" value="<?php echo $_POST['password'];?>" name="password">
             <input type="hidden" value="<?php echo $_POST['gender'];?>" name="gender">
             <input type="hidden" value="<?php echo $_POST['postal_code'];?>" name="postal_code">
