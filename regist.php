@@ -21,7 +21,7 @@
         </header>
         
         <main>
-            <form method="post" action="regist_confirm.php">
+            <form method="post" action="regist_confirm.php" name="regist">
                 <h1>入力フォーム</h1>
                     <div class="textarea">
                         <label>名前（姓）</label>

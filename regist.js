@@ -119,8 +119,8 @@ function input_check(){
     //パスワード
     //alert(document.getElementById("password_check"));
     //alert(document.getElementById("password_check").checked);
-    if(document.getElementById("password_check") === null || document.getElementById("password_check").checked){
-    if(password == ""){
+    if(document.getElementById("password_check") === null　|| document.getElementById("password_check").checked){
+        if(password == ""){
 		$("#password_error").html(" パスワードが未入力です。");
 		$("#password").addClass("inp_error");
 		result = false;
@@ -133,7 +133,15 @@ function input_check(){
 		$("#password").addClass("inp_error");
 		result = false;
     }
+    }else{
+        if(document.forms.update.password.value){
+        $("#password_error").html
+        (" パスワードを更新する場合はチェックボックスにチェックしてください。");
+        $("#password").addClass("inp_error");
+        result = false;
     }
+    }
+    
     //郵便番号
     if(postal_code == ""){
 		$("#postal_code_error").html(" 郵便番号が未入力です。");
