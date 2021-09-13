@@ -42,16 +42,23 @@ try{
 
 try{
     if(empty($update_erorr_message)){
-        $password_date = "";
-        if($password_check == 1){
-            $password_date = "password_hash($password,PASSWORD_DEFAULT),";
-        }
-        $stmt ->execute(array($family_name,$last_name,
-                          $family_name_kana,$last_name_kana,$mail,
-                          $password_date
-                          $gender,$postal_code,$prefecture,
-                          $address_1,$address_2,$authority,
-                          $delete_flag,date('Y-m-d H:i:s')));
+        $data = array($family_name,$last_name,
+              $family_name_kana,$last_name_kana,$mail);
+
+if($password_check == 1){
+    $password = password_hash($password, PASSWORD_DEFAULT);
+    $data = $data + array($password);// 配列に追加したいけど、正しい書き方ではない
+}
+
+$data =  $data + array($gender,$postal_code,$prefecture,
+              $address_1,$address_2,$authority,
+              $delete_flag,date('Y-m-d H:i:s'));// 更に追加してあげたいけど、、、
+        
+        var_dump($stmt);//すべて表示されている。
+        var_dump($data);//8個しかない←？？？
+        exit();
+
+$stmt->execute($data);
     }
 }catch(PDOException $Exception){
     $update_erorr_message = $Exception->getMessage();
