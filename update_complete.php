@@ -47,16 +47,13 @@ try{
 
 if($password_check == 1){
     $password = password_hash($password, PASSWORD_DEFAULT);
-    $data = $data + array($password);// 配列に追加したいけど、正しい書き方ではない
+    $data = array_merge($data,array($password));// 配列に追加したいけど、正しい書き方ではない
 }
 
-$data =  $data + array($gender,$postal_code,$prefecture,
+$data =  array_merge($data,array($gender,$postal_code,$prefecture,
               $address_1,$address_2,$authority,
-              $delete_flag,date('Y-m-d H:i:s'));// 更に追加してあげたいけど、、、
+              $delete_flag,date('Y-m-d H:i:s')));// 更に追加してあげたいけど、、、
         
-        var_dump($stmt);//すべて表示されている。
-        var_dump($data);//8個しかない←？？？
-        exit();
 
 $stmt->execute($data);
     }
