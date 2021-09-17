@@ -63,9 +63,11 @@
                         <label>パスワード</label><br>
                         <input type = "checkbox" name = "password_check" id = "password_check">※パスワードを変更する場合は左のチェックボックスにチェックをしてください。<br>
                         <!--変更したいのと変更したくない場合どのようにすべきか -->
+                        <div class="password_area">
                         <input type="text"class="text" size="10"
                                name="password"id="password"
-                               value="<?php if( !empty($_POST['password']) ){ echo $_POST['password'];} ?>"><br>
+                               value="<?php if( !empty($_POST['password']) ){ echo $_POST['password'];} ?>">
+                        </div>
                         <span id = 'password_error' class="error_m"></span>
                         <br>
                     </div>

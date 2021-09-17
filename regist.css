@@ -79,3 +79,11 @@ table.accounttable td.left{
 h7{
     color: red;
 }
+
+.password_area{ 
+  display: none;
+}
+/** チェックONなら表示 */
+input:checked ~ .password_area{
+  display: block;
+}
