@@ -2,47 +2,42 @@
 mb_language('ja');
 mb_internal_encoding("UTF-8");
 
-$mail = $_POST['mail'];
-$password = $_POST['password'];
+$login_erorr_flag = 0;
 
-try{
+if(empty($_POST['login'])){
+    $mail = $_POST['mail'];
+    $password = $_POST['password'];
+    
+    try{
     $pdo = new PDO("mysql:dbname=lesson01;host=localhost;","root","");
-}catch(PDOException $Exception){
+    }catch(PDOException $Exception){
     $login_erorr_message = $Exception->getMessage();
     $login_erorr_flag = 1;
-}
-
-try{
-    if(empty($login_erorr_message)){
-    $stmt = $pdo->prepare('select * from account where mail = '.$mail);
     }
-}catch(PDOException $Exception){
+    
+    try{
+        if(empty($login_erorr_message)){
+            $stmt = $pdo->query('select * from account where mail = '.$mail);
+        }
+    }catch(PDOException $Exception){
     $login_erorr_message = $Exception->getMessage();
     $login_erorr_flag = 1;
-}
-
-try{
-    if(empty($login_erorr_message)){
-    $stmt->execute(array('mail' => $_POST['mail']));
     }
-}catch(PDOException $Exception){
+
+    try{
+        if(empty($login_erorr_message)){
+            $result = $stmt -> fetch(PDO::FETCH_ASSOC);
+        }
+    }catch(PDOException $Exception){
     $login_erorr_message = $Exception->getMessage();
     $login_erorr_flag = 1;
-}
-
-try{
-    if(empty($login_erorr_message)){
-    $result = $stmt -> fetch(PDO::FETCH_ASSOC);
     }
-}catch(PDOException $Exception){
-    $login_erorr_message = $Exception->getMessage();
-    $login_erorr_flag = 1;
-}
-
-if(password_verify($_POST['password'],$result['password'])){
-    echo "OK";
-}else{
-    echo "NO";
+    
+    if(password_verify($password,$result['password'])){
+        echo "OK";
+    }else{
+        echo "NO";
+    }
 }
 
 ?>
@@ -83,7 +78,7 @@ if(password_verify($_POST['password'],$result['password'])){
                     <input type="password"class="text" size="10" name="password"id="password">
                 </div>
                 
-                <input type="submit" name="submit" value="ログイン">
+                <input class="button" type="submit" name="login" value="ログイン">
                 
             </form>
             
