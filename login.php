@@ -1,43 +1,48 @@
 <?php
-mb_language('ja');
-mb_internal_encoding("UTF-8");
+session_start();
 
-$login_erorr_flag = 0;
+//DB接続
+$pdo = new PDO("mysql:dbname=lesson01;host=localhost;","root","");
 
-if(empty($_POST['login'])){
-    $mail = $_POST['mail'];
-    $password = $_POST['password'];
-    
-    try{
-    $pdo = new PDO("mysql:dbname=lesson01;host=localhost;","root","");
-    }catch(PDOException $Exception){
-    $login_erorr_message = $Exception->getMessage();
-    $login_erorr_flag = 1;
-    }
-    
-    try{
-        if(empty($login_erorr_message)){
-            $stmt = $pdo->query('select * from account where mail = '.$mail);
-        }
-    }catch(PDOException $Exception){
-    $login_erorr_message = $Exception->getMessage();
-    $login_erorr_flag = 1;
-    }
+//エラーメッセージの初期化
+$login_error = array();
+$login_error_flag = 0;
 
-    try{
-        if(empty($login_erorr_message)){
-            $result = $stmt -> fetch(PDO::FETCH_ASSOC);
-        }
-    }catch(PDOException $Exception){
-    $login_erorr_message = $Exception->getMessage();
-    $login_erorr_flag = 1;
-    }
-    
-    if(password_verify($password,$result['password'])){
-        echo "OK";
-    }else{
-        echo "NO";
-    }
+
+// ログインボタンが押されたら
+if (isset($_POST['login'])) {
+
+   //エラー文
+   if (empty($_POST['mail'])) {
+       $login_error['mail'] = 'メールアドレスが未入力です。';
+   } 
+   if (empty($_POST['password'])) {
+       $login_error['password'] = 'パスワードが未入力です。';
+   }
+   
+   if (!empty($_POST['mail']) && !empty($_POST['password'])) {
+       $mail = $_POST['mail'];
+       try {
+           $pdo -> beginTransaction();
+           $stmt = $pdo->prepare("SELECT * FROM account WHERE mail = :mail");
+           $stmt -> bindValue(':mail', $mail, PDO::PARAM_STR);
+           $stmt -> execute();
+
+           $password = $_POST['password'];
+           $result = $stm->fetch(PDO::FETCH_ASSOC);
+
+           if (password_verify($password, $result['password'])) {    
+               $_SESSION['id'] = $result["id"];
+               $_SESSION['mail'] = $mail;
+               header('Location: regist.html');
+           } else {
+               $login_error['login'] = 'メールアドレスまたはパスワードに誤りがあります。';
+           }
+       } catch (PDOException $Exception) {
+           $login_error_message = $Exception->getMessage();
+           $login_error_flag = 1;
+       }
+   }
 }
 
 ?>
@@ -63,25 +68,35 @@ if(empty($_POST['login'])){
         
         <main>
             <h1>ログイン画面</h1>
-            <form action="regist.html" method="post" name = "login">
-                <div class="textarea">
-                    <?php if($login_erorr_flag == 1){
-                echo '<h7>エラーが発生したためログイン情報を取得できません。<br>
-                '.$login_erorr_message.'<br></h7>';
-                    };?>
-                    <label>メールアドレス</label>
-                        <input type="text"class="text" size="100"name="mail"id="mail">
-                </div>
-                
-                <div class="textarea">
-                    <label>パスワード</label>
-                    <input type="password"class="text" size="10" name="password"id="password">
-                </div>
-                
-                <input class="button" type="submit" name="login" value="ログイン">
-                
+            <div class="form">
+            <form id="loginForm" name="loginForm" action="" method="POST">
+               <?php
+                foreach($login_error as $error){
+                    print "<p class='login_error'>";
+                    print "<h7>".$error."</h7><br>";
+                    print "</p>";
+                }
+                if($login_error_flag == 1){
+                    echo '<h7>エラーが発生したためログイン情報を取得できません。<br>'.$login_erorr_message.'<br></h7>';
+                };
+
+               ?>
+
+               <div>
+                   <label for="mail">メールアドレス
+                   <input type="text" id="mail" name="mail" placeholder="メールアドレスを入力" value="<?php if (!empty($_POST["mail"])) {echo htmlspecialchars($_POST["mail"], ENT_QUOTES);} ?>">
+                   </label>
+               </div>
+
+               <div>
+                   <label for="password">パスワード
+                   <input type="password" id="password" name="password" value="" placeholder="パスワードを入力">
+                   </label>
+               </div>
+                <input type="submit" id="login" name="login" value="ログイン">
+                <input type="hidden" value="<?php echo $result['authority'];?>" name="authority">
             </form>
-            
+            </div>
         </main>
         
         <footer>
