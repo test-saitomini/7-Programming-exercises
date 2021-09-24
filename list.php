@@ -25,18 +25,18 @@
             <div class = "kakunin_area">
             <table class="accounttable">
                 <tr>
-                    <td class="centor">ID</td>
-                    <td class="centor">名前（姓）</td>
-                    <td class="centor">名前（名）</td>
-                    <td class="centor">カナ（姓）</td>
-                    <td class="centor">カナ（名）</td>
-                    <td class="centor">メールアドレス</td>
-                    <td class="centor">性別</td>
-                    <td class="centor">アカウント権限</td>
-                    <td class="centor">削除フラグ</td>
-                    <td class="centor">登録日時</td>
-                    <td class="centor">更新日時</td>
-                    <td class="centor" colspan="2">操作</td>
+                    <td class="center">ID</td>
+                    <td class="center">名前（姓）</td>
+                    <td class="center">名前（名）</td>
+                    <td class="center">カナ（姓）</td>
+                    <td class="center">カナ（名）</td>
+                    <td class="center">メールアドレス</td>
+                    <td class="center">性別</td>
+                    <td class="center">アカウント権限</td>
+                    <td class="center">削除フラグ</td>
+                    <td class="center">登録日時</td>
+                    <td class="center">更新日時</td>
+                    <td class="center" colspan="2">操作</td>
                 </tr>
             <?php
             
@@ -53,37 +53,37 @@
                 echo '<td class="right">',$row['last_name_kana'],'</td>';
                 echo '<td class="left">',$row['mail'],'</td>';
                 if($row['gender'] === "0"){
-                    echo '<td class="centor">',"男",'</td>';
+                    echo '<td class="center">',"男",'</td>';
                 } else {
-                    echo '<td class="centor">',"女",'</td>';
+                    echo '<td class="center">',"女",'</td>';
                 }
                 if($row['authority'] === "0"){
-                    echo '<td class="centor">',"一般",'</td>';
+                    echo '<td class="center">',"一般",'</td>';
                 } else {
-                    echo '<td class="centor">',"管理者",'</td>';
+                    echo '<td class="center">',"管理者",'</td>';
                 }
                 if($row['delete_flag'] === "0"){
-                    echo '<td class="centor">',"有効",'</td>';
+                    echo '<td class="center">',"有効",'</td>';
                 } else {
-                    echo '<td class="centor">',"無効",'</td>';
+                    echo '<td class="center">',"無効",'</td>';
                 }
                 
                 $date1 = $row['registered_time'];
                 $registered_date = substr($date1,0,10);
-                echo '<td class="centor">',$registered_date,'</td>';
+                echo '<td class="center">',$registered_date,'</td>';
                 
                 $date2 = $row['update_time'];
                 $update_date = substr($date2,0,10);
-                echo '<td class="centor">',$update_date,'</td>';
+                echo '<td class="center">',$update_date,'</td>';
                 
                 //各行の表に対応した更新ボタン
                 echo '<form action="update.php" method="post">';
                 echo '<input type = "hidden" name = "id" value="'.$row["id"].'">';
                 if($row['delete_flag']== 1){
-                    echo '<td class="centor">','<input type="submit" value="更新" disabled>
+                    echo '<td class="center">','<input type="submit" value="更新" disabled>
             </form>','</td>';
                 }else{
-                    echo '<td class="centor">','<input type="submit" value="更新">
+                    echo '<td class="center">','<input type="submit" value="更新">
             </form>','</td>';
                 };
                 
@@ -93,10 +93,10 @@
                 echo '<input type = "hidden" name = "id" value="'.$row["id"].'" >';
                 //echo "<input type = hidden value=".$row["id"].">";
                 if($row['delete_flag']== 1){
-                    echo '<td class="centor">','<input type="submit" value="削除"disabled>
+                    echo '<td class="center">','<input type="submit" value="削除"disabled>
             </form>','</td>';
                 }else{
-                    echo '<td class="centor">','<input type="submit" value="削除">
+                    echo '<td class="center">','<input type="submit" value="削除">
             </form>','</td>';
                 }
                 

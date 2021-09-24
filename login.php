@@ -29,7 +29,7 @@ if (isset($_POST['login'])) {
            $stmt -> execute();
 
            $password = $_POST['password'];
-           $result = $stm->fetch(PDO::FETCH_ASSOC);
+           $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
            if (password_verify($password, $result['password'])) {    
                $_SESSION['id'] = $result["id"];
@@ -84,13 +84,13 @@ if (isset($_POST['login'])) {
 
                <div>
                    <label for="mail">メールアドレス
-                   <input type="text" id="mail" name="mail" placeholder="メールアドレスを入力" value="<?php if (!empty($_POST["mail"])) {echo htmlspecialchars($_POST["mail"], ENT_QUOTES);} ?>">
+                   <input type="text" id="mail" name="mail" placeholder="メールアドレス" value="<?php if (!empty($_POST["mail"])) {echo $_POST["mail"];} ?>">
                    </label>
                </div>
 
                <div>
                    <label for="password">パスワード
-                   <input type="password" id="password" name="password" value="" placeholder="パスワードを入力">
+                   <input type="password" id="password" name="password" value="" placeholder="パスワード">
                    </label>
                </div>
                 <input type="submit" id="login" name="login" value="ログイン">

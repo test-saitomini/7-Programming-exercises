@@ -18,17 +18,17 @@ $address_1 = $_POST['address_1'];
 $address_2 = $_POST['address_2'];
 $authority = $_POST['authority'];
 $delete_flag = $_POST['delete_flag'];
-$erorr_flag = 0;
+$error_flag = 0;
 
 try{
     $pdo = new PDO("mysql:dbname=lesson01;host=localhost;","root","");
 }catch(PDOException $Exception){
-    $update_erorr_message = $Exception->getMessage();
-    $erorr_flag = 1;
+    $update_error_message = $Exception->getMessage();
+    $error_flag = 1;
 }
 
 try{
-    if(empty($update_erorr_message)){
+    if(empty($update_error_message)){
         $password_update = "";
         if($password_check == 1){
             $password_update = "password = ?,";
@@ -36,30 +36,30 @@ try{
         $stmt = $pdo->prepare("UPDATE account SET family_name = ?,last_name = ?,family_name_kana = ?,last_name_kana = ?,mail = ?,".$password_update."gender = ?,postal_code = ?,prefecture = ?,address_1 = ?,address_2 = ?,authority = ?,delete_flag = ?,update_time = ? where id = $id");
     }
 }catch(PDOException $Exception){
-    $update_erorr_message = $Exception->getMessage();
-    $erorr_flag = 1;
+    $update_error_message = $Exception->getMessage();
+    $error_flag = 1;
 }
 
 try{
-    if(empty($update_erorr_message)){
+    if(empty($update_error_message)){
         $data = array($family_name,$last_name,
               $family_name_kana,$last_name_kana,$mail);
 
-if($password_check == 1){
-    $password = password_hash($password, PASSWORD_DEFAULT);
-    $data = array_merge($data,array($password));// 配列に追加したいけど、正しい書き方ではない
-}
+        if($password_check == 1){
+            $password = password_hash($password, PASSWORD_DEFAULT);
+            $data = array_merge($data,array($password));// 配列に追加したいけど、正しい書き方ではない
+        }
 
-$data =  array_merge($data,array($gender,$postal_code,$prefecture,
-              $address_1,$address_2,$authority,
-              $delete_flag,date('Y-m-d H:i:s')));// 更に追加してあげたいけど、、、
-        
+        $data =  array_merge($data,array($gender,$postal_code,$prefecture,
+                      $address_1,$address_2,$authority,
+                      $delete_flag,date('Y-m-d H:i:s')));// 更に追加してあげたいけど、、、
 
-$stmt->execute($data);
+
+        $stmt->execute($data);
     }
 }catch(PDOException $Exception){
-    $update_erorr_message = $Exception->getMessage();
-    $erorr_flag = 1;
+    $update_error_message = $Exception->getMessage();
+    $error_flag = 1;
 }
 
 
@@ -84,9 +84,9 @@ $stmt->execute($data);
         </header>
     <body>
         <div class="back-top">
-            <?php if($erorr_flag == 1){
+            <?php if($error_flag == 1){
                 echo '<h7>エラーが発生したためアカウント更新できません。<br>
-            '.$update_erorr_message.'</h7>';
+            '.$update_error_message.'</h7>';
             }else{
                 echo '<h4>更新完了しました。</h4>';
             };?>

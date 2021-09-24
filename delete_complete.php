@@ -5,13 +5,13 @@ date_default_timezone_set('Asia/Tokyo');
 
 $id = $_POST['id'];
 $delete_flag = $_POST['delete_flag'];
-$erorr_flag = 0;
+$error_flag = 0;
 
 try{
     $pdo = new PDO("mysql:dbname=lesson01;host=localhost;","root","");
 }catch(PDOException $Exception){
-    $delete_erorr_message = $Exception->getMessage();
-    $erorr_flag = 1;
+    $delete_error_message = $Exception->getMessage();
+    $error_flag = 1;
     /*$abc = '<!DOCTYPE HTML>
 <html lang="ja">
     <head>
@@ -47,22 +47,22 @@ try{
 }
 
 try{
-    if(empty($delete_erorr_message)){
+    if(empty($delete_error_message)){
     $stmt = $pdo->prepare("UPDATE account SET delete_flag = ?,update_time = ? where id = $id");
     }
 }catch(PDOException $Exception){
-    $delete_erorr_message = $Exception->getMessage();
-    $erorr_flag = 1;
+    $delete_error_message = $Exception->getMessage();
+    $error_flag = 1;
 }
 
 try{
-    if(empty($delete_erorr_message)){
+    if(empty($delete_error_message)){
         $stmt ->execute(array($delete_flag,date('Y-m-d H:i:s')));
     }
     
     }catch(PDOException $Exception){
-    $delete_erorr_message = $Exception->getMessage();
-    $erorr_flag = 1;
+    $delete_error_message = $Exception->getMessage();
+    $error_flag = 1;
 }
 /*
 echo '<!DOCTYPE HTML>
@@ -115,9 +115,9 @@ echo '<!DOCTYPE HTML>
         </header>
     <body>
         <div class="back-top">
-            <?php if($erorr_flag == 1){
+            <?php if($error_flag == 1){
                 echo '<h7>エラーが発生したためアカウント削除できません。<br>
-            '.$delete_erorr_message.'</h7>';
+            '.$delete_error_message.'</h7>';
             }else{
                 echo '<h4>削除完了しました。</h4>';
             };?>
