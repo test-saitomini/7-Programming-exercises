@@ -1,3 +1,13 @@
+<?php
+mb_language('ja');
+mb_internal_encoding("UTF-8");
+
+session_start();
+
+$id = $_SESSION["id"];
+$login_authority = $_SESSION["authority"];
+?>
+
 <!DOCTYPE HTML>
 <html lang="ja">
     <head>
@@ -9,9 +19,10 @@
     </head>
     
     <body>
+        <?php if($login_authority == 1) : ?>
         <header>
             <ul>
-                <li><a href = "http://localhost/7-Programming-exercises/regist.html">トップ</a></li>
+                <li><a href = "http://localhost/7-Programming-exercises/regist_top.php">トップ</a></li>
                 <li>プロフィール</li>
                 <li><a href = "http://localhost/7-Programming-exercises/regist.php">アカウント登録</a></li>
                 <li>問い合わせ</li>

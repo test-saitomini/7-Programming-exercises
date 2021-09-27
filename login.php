@@ -34,7 +34,8 @@ if (isset($_POST['login'])) {
            if (password_verify($password, $result['password'])) {    
                $_SESSION['id'] = $result["id"];
                $_SESSION['mail'] = $mail;
-               header('Location: regist.html');
+               $_SESSION['authority'] = $result['authority'];
+               header('Location: regist_top.php');
            } else {
                $login_error['login'] = 'メールアドレスまたはパスワードに誤りがあります。';
            }
@@ -94,7 +95,6 @@ if (isset($_POST['login'])) {
                    </label>
                </div>
                 <input type="submit" id="login" name="login" value="ログイン">
-                <input type="hidden" value="<?php echo $result['authority'];?>" name="authority">
             </form>
             </div>
         </main>

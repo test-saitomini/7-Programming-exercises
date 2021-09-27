@@ -9,7 +9,7 @@
     <body>
         <header>
             <ul>
-                <li>トップ</li>
+                <li><a href = "http://localhost/7-Programming-exercises/regist_top.php">トップ</a></li>
                 <li>プロフィール</li>
                 <li><a href = "http://localhost/7-Programming-exercises/regist.php">アカウント登録</a></li>
                 <li>問い合わせ</li>

@@ -76,8 +76,15 @@ table.accounttable td.left{
     text-align:left;
 }
 
-h7{
+h7{float:left;
     color: red;
+}
+
+h8{
+    float:left;
+    color: red;
+    font-size: 30px;
+    text-align: center;
 }
 
 .password_area{ 

@@ -2,6 +2,10 @@
 mb_language('ja');
 mb_internal_encoding("UTF-8");
 
+session_start();
+
+$id = $_SESSION["id"];
+$login_authority = $_SESSION["authority"];
 ?>
 
 <!DOCTYPE HTML>
@@ -15,21 +19,27 @@ mb_internal_encoding("UTF-8");
     
     <body>
         <header>
+            <?php if($login_authority == 1) : ?>
             <ul>
-                <form method="post" name="link">
-                    <li>トップ</li>
-                    <li>プロフィール</li>
-                    <li><a href = "http://localhost/7-Programming-exercises/regist.php">アカウント登録</a></li>
-                    <li>問い合わせ</li>
-                    <li><a href = "http://localhost/7-Programming-exercises/list.php">アカウント一覧</a></li>
-                    <li>その他</li>
-                    <input type="hidden" value="<?php echo $_POST['authority'];?>" name="authority">
-                </form>
+                <li>トップ</li>
+                <li>プロフィール</li>
+                <li><a href = "http://localhost/7-Programming-exercises/regist.php">アカウント登録</a></li>
+                <li>問い合わせ</li>
+                <li><a href = "http://localhost/7-Programming-exercises/list.php">アカウント一覧</a></li>
+                <li>その他</li>
             </ul>
+            <?php else : ?>
+            <ul>
+                <li>トップ</li>
+                <li>プロフィール</li>
+                <li>アカウント登録</li>
+                <li>問い合わせ</li>
+                <li>アカウント一覧</li>
+                <li>その他</li>
+            </ul>
+            <?php endif; ?>
         </header>
-        <?php
-        echo $_POST['authority'];
-        ?>
+        
     </body>
     
     <footer>
