@@ -4,7 +4,6 @@ mb_internal_encoding("UTF-8");
 
 session_start();
 
-$id = $_SESSION["id"];
 $login_authority = $_SESSION["authority"];
 ?>
 

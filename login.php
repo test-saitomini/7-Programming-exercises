@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-//DB接続
 $pdo = new PDO("mysql:dbname=lesson01;host=localhost;","root","");
 
 //エラーメッセージの初期化
@@ -32,8 +31,6 @@ if (isset($_POST['login'])) {
            $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
            if (password_verify($password, $result['password'])) {    
-               $_SESSION['id'] = $result["id"];
-               $_SESSION['mail'] = $mail;
                $_SESSION['authority'] = $result['authority'];
                header('Location: regist_top.php');
            } else {
