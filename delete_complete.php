@@ -7,6 +7,9 @@ $id = $_POST['id'];
 $delete_flag = $_POST['delete_flag'];
 $error_flag = 0;
 
+session_start();
+$login_authority = $_SESSION["authority"];
+
 try{
     $pdo = new PDO("mysql:dbname=lesson01;host=localhost;","root","");
 }catch(PDOException $Exception){
@@ -103,6 +106,7 @@ echo '<!DOCTYPE HTML>
         <title>アカウント削除完了画面</title>
         <link rel="stylesheet"type="text/css" href="regist.css">
     </head>
+    <?php if($login_authority == 1) : ?>
     <header>
             <ul>
                 <li><a href = "http://localhost/7-Programming-exercises/regist_top.php">トップ</a></li>
@@ -126,6 +130,39 @@ echo '<!DOCTYPE HTML>
             </form>
         </div>
     </body>
+    <?php elseif($login_authority == 0) : ?>
+        <header>
+            <ul>
+                <li>トップ</li>
+                <li>プロフィール</li>
+                <li>アカウント登録</li>
+                <li>問い合わせ</li>
+                <li>アカウント一覧</li>
+                <li>その他</li>
+            </ul>
+        </header>
+        <main>
+            <div class="error_messge">
+                <h8>※この画面は操作できません。</h8>
+                </div>
+        </main>
+        <?php else : ?>
+        <header>
+            <ul>
+                <li>トップ</li>
+                <li>プロフィール</li>
+                <li>アカウント登録</li>
+                <li>問い合わせ</li>
+                <li>アカウント一覧</li>
+                <li>その他</li>
+            </ul>
+        </header>
+        <main>
+            <div class="error_messge">
+                <h8>※ログインをしてください。</h8>
+                </div>
+        </main>
+    <?php endif; ?>
     <footer>
             Copyright D.I.Works| D.I.blog is the one which provides Ato Z about programming
     </footer>

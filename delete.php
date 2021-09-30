@@ -63,10 +63,7 @@ $login_authority = $_SESSION["authority"];
             
             <p><label>パスワード</label>
             <br><h7>※セキュリティ上、パスワードを非表示にしています。</h7>
-            <!--<?php /*
-            $password = $delete['password'];
-            for($i=0;$i< mb_strlen($password);$i++){
-            echo '●';} */?>--> </p>
+            </p>
             
             <p><label>性別</label>
             <?php if( $delete['gender'] === "0" ){echo '男性'; 
@@ -93,6 +90,40 @@ $login_authority = $_SESSION["authority"];
                 <input type="hidden" name = "id" value="<?php echo $_POST['id'];?>">
             </form>
         </main>
+        
+        <?php elseif($login_authority == 0) : ?>
+        <header>
+            <ul>
+                <li>トップ</li>
+                <li>プロフィール</li>
+                <li>アカウント登録</li>
+                <li>問い合わせ</li>
+                <li>アカウント一覧</li>
+                <li>その他</li>
+            </ul>
+        </header>
+        <main>
+            <div class="error_messge">
+                <h8>※この画面は操作できません。</h8>
+                </div>
+        </main>
+        <?php else : ?>
+        <header>
+            <ul>
+                <li>トップ</li>
+                <li>プロフィール</li>
+                <li>アカウント登録</li>
+                <li>問い合わせ</li>
+                <li>アカウント一覧</li>
+                <li>その他</li>
+            </ul>
+        </header>
+        <main>
+            <div class="error_messge">
+                <h8>※ログインをしてください。</h8>
+                </div>
+        </main>
+        <?php endif; ?>
         <footer>
             Copyright D.I.Works| D.I.blog is the one which provides Ato Z about programming
         </footer>

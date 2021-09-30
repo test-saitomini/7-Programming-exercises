@@ -27,7 +27,7 @@ $login_authority = $_SESSION["authority"];
                 <li><a href = "http://localhost/7-Programming-exercises/list.php">アカウント一覧</a></li>
                 <li>その他</li>
             </ul>
-            <?php else : ?>
+            <?php elseif($login_authority == 0) : ?>
             <ul>
                 <li>トップ</li>
                 <li>プロフィール</li>
@@ -36,6 +36,22 @@ $login_authority = $_SESSION["authority"];
                 <li>アカウント一覧</li>
                 <li>その他</li>
             </ul>
+            <?php else : ?>
+            <header>
+            <ul>
+                <li>トップ</li>
+                <li>プロフィール</li>
+                <li>アカウント登録</li>
+                <li>問い合わせ</li>
+                <li>アカウント一覧</li>
+                <li>その他</li>
+            </ul>
+        </header>
+        <main>
+            <div class="error_messge">
+                <h8>※ログインをしてください。</h8>
+                </div>
+        </main>
             <?php endif; ?>
         </header>
         

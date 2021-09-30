@@ -4,9 +4,8 @@ mb_internal_encoding("UTF-8");
 
 session_start();
 
-$id = $_SESSION["id"];
-//$login_authority = $_SESSION["authority"];
-$login_authority = 0;
+$login_authority = $_SESSION["authority"];
+//$login_authority = 0;
 ?>
 
 <!DOCTYPE HTML>
@@ -18,7 +17,6 @@ $login_authority = 0;
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         
     </head>
-    
     <body>
         <?php if($login_authority == 1) : ?>
         <header>
@@ -122,6 +120,22 @@ $login_authority = 0;
                 </div>
             
         </main>
+        <?php elseif($login_authority == 0) : ?>
+        <header>
+            <ul>
+                <li>トップ</li>
+                <li>プロフィール</li>
+                <li>アカウント登録</li>
+                <li>問い合わせ</li>
+                <li>アカウント一覧</li>
+                <li>その他</li>
+            </ul>
+        </header>
+        <main>
+            <div class="error_messge">
+                <h8>※この画面は操作できません。</h8>
+                </div>
+        </main>
         <?php else : ?>
         <header>
             <ul>
@@ -134,7 +148,9 @@ $login_authority = 0;
             </ul>
         </header>
         <main>
-        <h8>※この画面は操作できません。</h8>
+            <div class="error_messge">
+                <h8>※ログインをしてください。</h8>
+                </div>
         </main>
         <?php endif; ?>
         

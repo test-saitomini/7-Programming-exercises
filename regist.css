@@ -76,7 +76,7 @@ table.accounttable td.left{
     text-align:left;
 }
 
-h7{float:left;
+h7{
     color: red;
 }
 
@@ -84,6 +84,9 @@ h8{
     float:left;
     color: red;
     font-size: 30px;
+}
+
+.error_messge{
     text-align: center;
 }
 

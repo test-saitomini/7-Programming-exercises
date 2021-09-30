@@ -4,6 +4,10 @@ mb_internal_encoding("UTF-8");
 date_default_timezone_set('Asia/Tokyo');//日本時間へ変更（20210622）
 $error_flag = 0;
 
+session_start();
+
+$login_authority = $_SESSION["authority"];
+
 try{
     $pdo = new PDO("mysql:dbname=lesson01;host=localhost;","root","");
 }catch(PDOException $Exception){
@@ -29,6 +33,7 @@ try{
         <title>アカウント登録完了画面</title>
         <link rel="stylesheet"type="text/css" href="regist.css">
     </head>
+    <?php if($login_authority == 1) : ?>
     <header>
             <ul>
                 <li><a href = "http://localhost/7-Programming-exercises/regist_top.php">トップ</a></li>
@@ -52,6 +57,39 @@ try{
             </form>
         </div>
     </body>
+    <?php elseif($login_authority == 0) : ?>
+        <header>
+            <ul>
+                <li>トップ</li>
+                <li>プロフィール</li>
+                <li>アカウント登録</li>
+                <li>問い合わせ</li>
+                <li>アカウント一覧</li>
+                <li>その他</li>
+            </ul>
+        </header>
+        <main>
+            <div class="error_messge">
+                <h8>※この画面は操作できません。</h8>
+            </div>
+        </main>
+        <?php else : ?>
+        <header>
+            <ul>
+                <li>トップ</li>
+                <li>プロフィール</li>
+                <li>アカウント登録</li>
+                <li>問い合わせ</li>
+                <li>アカウント一覧</li>
+                <li>その他</li>
+            </ul>
+        </header>
+        <main>
+            <div class="error_messge">
+                <h8>※ログインをしてください。</h8>
+            </div>
+        </main>
+    <?php endif; ?>
     <footer>
             Copyright D.I.Works| D.I.blog is the one which provides Ato Z about programming
     </footer>

@@ -33,6 +33,7 @@ if (isset($_POST['login'])) {
            if (password_verify($password, $result['password'])) {    
                $_SESSION['authority'] = $result['authority'];
                header('Location: regist_top.php');
+               exit();
            } else {
                $login_error['login'] = 'メールアドレスまたはパスワードに誤りがあります。';
            }
@@ -42,7 +43,7 @@ if (isset($_POST['login'])) {
        }
    }
 }
-
+//セッションの中身を消す
 ?>
 
 <!DOCTYPE HTML>
