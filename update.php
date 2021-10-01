@@ -2,9 +2,15 @@
 mb_language('ja');
 mb_internal_encoding("UTF-8");
 
+$update_error = 0;
+
 session_start();
 
-$login_authority = $_SESSION["authority"];
+if($_SESSION != NULL){
+    $login_authority = $_SESSION["authority"];
+}else{
+    $login_authority = "NULL";
+}
 ?>
 
 <!DOCTYPE HTML>
@@ -34,14 +40,20 @@ $login_authority = $_SESSION["authority"];
             
             <?php
             
-            $id = $_POST['id'];
+            if($_POST != NULL){
+                $id = $_POST['id'];
             
-            mb_internal_encoding("UTF-8");
-            $pdo = new PDO("mysql:dbname=lesson01;host=localhost;","root","");
+                mb_internal_encoding("UTF-8");
+                $pdo = new PDO("mysql:dbname=lesson01;host=localhost;","root","");
+
+                $stmt = $pdo -> query('select * from account where id = '.$id);
+                $update = $stmt->fetch();
+            }else{
+                $update_error = 1;
+            }
             
-            $stmt = $pdo -> query('select * from account where id = '.$id);
-            $update = $stmt->fetch();
             ?>
+            <?php if($update_error == 0) : ?>
             <form action="update_confirm.php" method="post" name = "update">
                 <input type="hidden" name = "id" value="<?php echo $_POST['id'];?>">
             <div class="textarea">
@@ -136,6 +148,9 @@ $login_authority = $_SESSION["authority"];
                         <input type="submit" class="btn_submit" id="btn_confirm" value="確認する">
                     </div>
                 </form>
+            <?php else : ?>
+                <h8>※アカウント一覧画面から更新するデータを選択してください。</h8>
+            <?php endif; ?>
             <br>
             </main>
         <?php elseif($login_authority == 0) : ?>
@@ -167,7 +182,7 @@ $login_authority = $_SESSION["authority"];
         </header>
         <main>
             <div class="error_messge">
-                <h8>※ログインをしてください。</h8>
+                <h8>※ログインを行ってください。</h8>
                 </div>
         </main>
         <?php endif; ?>

@@ -3,35 +3,47 @@ mb_language('ja');
 mb_internal_encoding("UTF-8");
 date_default_timezone_set('Asia/Tokyo');
 
-session_start();
-$login_authority = $_SESSION["authority"];
+$update_error_flag = 0;
+$update_error_message = 'アカウント一覧画面から更新するデータを選択してください。';
 
-$id = $_POST['id'];
-$family_name = $_POST['family_name'];
-$last_name = $_POST['last_name'];
-$family_name_kana = $_POST['family_name_kana'];
-$last_name_kana = $_POST['last_name_kana'];
-$mail = $_POST['mail'];
-$password_check = $_POST['password_check'];
-$password = $_POST['password'];
-$gender = $_POST['gender'];
-$postal_code = $_POST['postal_code'];
-$prefecture = $_POST['prefecture'];
-$address_1 = $_POST['address_1'];
-$address_2 = $_POST['address_2'];
-$authority = $_POST['authority'];
-$delete_flag = $_POST['delete_flag'];
-$error_flag = 0;
+session_start();
+if($_SESSION != NULL){
+    $login_authority = $_SESSION["authority"];
+}else{
+    $login_authority = "NULL";
+}
+
+if($_POST != NULL){
+    $id = $_POST['id'];
+    $family_name = $_POST['family_name'];
+    $last_name = $_POST['last_name'];
+    $family_name_kana = $_POST['family_name_kana'];
+    $last_name_kana = $_POST['last_name_kana'];
+    $mail = $_POST['mail'];
+    $password_check = $_POST['password_check'];
+    $password = $_POST['password'];
+    $gender = $_POST['gender'];
+    $postal_code = $_POST['postal_code'];
+    $prefecture = $_POST['prefecture'];
+    $address_1 = $_POST['address_1'];
+    $address_2 = $_POST['address_2'];
+    $authority = $_POST['authority'];
+    $delete_flag = $_POST['delete_flag'];
+}else{
+    $update_error_flag = 1;
+}
+
+
 
 try{
     $pdo = new PDO("mysql:dbname=lesson01;host=localhost;","root","");
 }catch(PDOException $Exception){
     $update_error_message = $Exception->getMessage();
-    $error_flag = 1;
+    $update_error_flag = 1;
 }
 
 try{
-    if(empty($update_error_message)){
+    if($update_error_flag == 0){
         $password_update = "";
         if($password_check == 1){
             $password_update = "password = ?,";
@@ -40,11 +52,11 @@ try{
     }
 }catch(PDOException $Exception){
     $update_error_message = $Exception->getMessage();
-    $error_flag = 1;
+    $update_error_flag = 1;
 }
 
 try{
-    if(empty($update_error_message)){
+    if($update_error_flag == 0){
         $data = array($family_name,$last_name,
               $family_name_kana,$last_name_kana,$mail);
 
@@ -62,7 +74,7 @@ try{
     }
 }catch(PDOException $Exception){
     $update_error_message = $Exception->getMessage();
-    $error_flag = 1;
+    $update_error_flag = 1;
 }
 
 
@@ -88,7 +100,7 @@ try{
         </header>
     <body>
         <div class="back-top">
-            <?php if($error_flag == 1){
+            <?php if($update_error_flag == 1){
                 echo '<h7>エラーが発生したためアカウント更新できません。<br>
             '.$update_error_message.'</h7>';
             }else{
@@ -128,7 +140,7 @@ try{
         </header>
         <main>
             <div class="error_messge">
-                <h8>※ログインをしてください。</h8>
+                <h8>※ログインを行ってください。</h8>
                 </div>
         </main>
     <?php endif; ?>

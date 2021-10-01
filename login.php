@@ -44,6 +44,10 @@ if (isset($_POST['login'])) {
    }
 }
 //セッションの中身を消す
+$_SESSION = array();
+//セッションクリア
+session_destroy();
+
 ?>
 
 <!DOCTYPE HTML>

@@ -3,18 +3,28 @@ mb_language('ja');
 mb_internal_encoding("UTF-8");
 date_default_timezone_set('Asia/Tokyo');
 
-$id = $_POST['id'];
-$delete_flag = $_POST['delete_flag'];
-$error_flag = 0;
+$delete_error_flag = 0;
+$delete_error_message = 'アカウント一覧画面から削除するデータを選択してください。';
 
 session_start();
-$login_authority = $_SESSION["authority"];
+if($_SESSION != NULL){
+    $login_authority = $_SESSION["authority"];
+}else{
+    $login_authority = "NULL";
+}
+
+if($_POST != NULL){
+    $id = $_POST['id'];
+    $delete_flag = $_POST['delete_flag'];
+}else{
+    $delete_error_flag = 1;
+}
 
 try{
     $pdo = new PDO("mysql:dbname=lesson01;host=localhost;","root","");
 }catch(PDOException $Exception){
     $delete_error_message = $Exception->getMessage();
-    $error_flag = 1;
+    $delete_error_flag = 1;
     /*$abc = '<!DOCTYPE HTML>
 <html lang="ja">
     <head>
@@ -50,22 +60,22 @@ try{
 }
 
 try{
-    if(empty($delete_error_message)){
+    if($delete_error_flag == 0){
     $stmt = $pdo->prepare("UPDATE account SET delete_flag = ?,update_time = ? where id = $id");
     }
 }catch(PDOException $Exception){
     $delete_error_message = $Exception->getMessage();
-    $error_flag = 1;
+    $delete_error_flag = 1;
 }
 
 try{
-    if(empty($delete_error_message)){
+    if($delete_error_flag == 0){
         $stmt ->execute(array($delete_flag,date('Y-m-d H:i:s')));
     }
     
     }catch(PDOException $Exception){
     $delete_error_message = $Exception->getMessage();
-    $error_flag = 1;
+    $delete_error_flag = 1;
 }
 /*
 echo '<!DOCTYPE HTML>
@@ -119,7 +129,7 @@ echo '<!DOCTYPE HTML>
         </header>
     <body>
         <div class="back-top">
-            <?php if($error_flag == 1){
+            <?php if($delete_error_flag == 1){
                 echo '<h7>エラーが発生したためアカウント削除できません。<br>
             '.$delete_error_message.'</h7>';
             }else{
@@ -159,7 +169,7 @@ echo '<!DOCTYPE HTML>
         </header>
         <main>
             <div class="error_messge">
-                <h8>※ログインをしてください。</h8>
+                <h8>※ログインを行ってください。</h8>
                 </div>
         </main>
     <?php endif; ?>

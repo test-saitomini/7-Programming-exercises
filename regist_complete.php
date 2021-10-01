@@ -3,10 +3,15 @@ mb_language('ja');
 mb_internal_encoding("UTF-8");
 date_default_timezone_set('Asia/Tokyo');//日本時間へ変更（20210622）
 $error_flag = 0;
+$error_message = 'アカウント登録画面からアカウント登録をしてください。';
 
 session_start();
 
-$login_authority = $_SESSION["authority"];
+if($_SESSION != NULL){
+    $login_authority = $_SESSION["authority"];
+}else{
+    $login_authority = "NULL";
+}
 
 try{
     $pdo = new PDO("mysql:dbname=lesson01;host=localhost;","root","");
@@ -15,12 +20,16 @@ try{
     $error_flag = 1;
 }
 
-try{
-    if(empty($error_message)){
-    $pdo -> exec("insert into account(family_name,last_name,family_name_kana,last_name_kana,mail,password,gender,postal_code,prefecture,address_1,address_2,authority,delete_flag,registered_time,update_time)values('".$_POST['family_name']."','".$_POST['last_name']."','".$_POST['family_name_kana']."','".$_POST['last_name_kana']."','".$_POST['mail']."','".password_hash($_POST['password'],PASSWORD_DEFAULT)."','".$_POST['gender']."','".$_POST['postal_code']."','".$_POST['prefecture']."','".$_POST['address_1']."','".$_POST['address_2']."','".$_POST['authority']."','".$_POST['delete_flag']."','".date('Y-m-d H:i:s')."','".date('Y-m-d H:i:s')."');");
+if($_POST != NULL){
+    try{
+        if($error_flag == 0){
+        $pdo -> exec("insert into account(family_name,last_name,family_name_kana,last_name_kana,mail,password,gender,postal_code,prefecture,address_1,address_2,authority,delete_flag,registered_time,update_time)values('".$_POST['family_name']."','".$_POST['last_name']."','".$_POST['family_name_kana']."','".$_POST['last_name_kana']."','".$_POST['mail']."','".password_hash($_POST['password'],PASSWORD_DEFAULT)."','".$_POST['gender']."','".$_POST['postal_code']."','".$_POST['prefecture']."','".$_POST['address_1']."','".$_POST['address_2']."','".$_POST['authority']."','".$_POST['delete_flag']."','".date('Y-m-d H:i:s')."','".date('Y-m-d H:i:s')."');");
+        }
+    }catch(PDOException $Exception){
+        $error_message = $Exception->getMessage();
+        $error_flag = 1;
     }
-}catch(PDOException $Exception){
-    $error_message = $Exception->getMessage();
+}else{
     $error_flag = 1;
 }
 
@@ -71,7 +80,7 @@ try{
         <main>
             <div class="error_messge">
                 <h8>※この画面は操作できません。</h8>
-            </div>
+                </div>
         </main>
         <?php else : ?>
         <header>
@@ -86,8 +95,8 @@ try{
         </header>
         <main>
             <div class="error_messge">
-                <h8>※ログインをしてください。</h8>
-            </div>
+                <h8>※ログインを行ってください。</h8>
+                </div>
         </main>
     <?php endif; ?>
     <footer>

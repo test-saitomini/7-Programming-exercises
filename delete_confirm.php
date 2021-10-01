@@ -4,7 +4,11 @@ mb_internal_encoding("UTF-8");
 
 session_start();
 
-$login_authority = $_SESSION["authority"];
+if($_SESSION != NULL){
+    $login_authority = $_SESSION["authority"];
+}else{
+    $login_authority = "NULL";
+}
 ?>
 
 <!DOCTYPE HTML>
@@ -31,6 +35,7 @@ $login_authority = $_SESSION["authority"];
         </header>
         
         <main>
+            <?php if($_POST != NULL) : ?>
             <div class="kakunin">
             <h4>本当に削除してよろしいですか？</h4>
             
@@ -43,6 +48,9 @@ $login_authority = $_SESSION["authority"];
                 
             </form>
             </div>
+            <?php else : ?>
+                <h8>※アカウント一覧画面から削除するデータを選択してください。</h8>
+            <?php endif; ?>
         </main>
         <?php elseif($login_authority == 0) : ?>
         <header>
@@ -73,7 +81,7 @@ $login_authority = $_SESSION["authority"];
         </header>
         <main>
             <div class="error_messge">
-                <h8>※ログインをしてください。</h8>
+                <h8>※ログインを行ってください。</h8>
                 </div>
         </main>
         <?php endif; ?>

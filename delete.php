@@ -2,9 +2,15 @@
 mb_language('ja');
 mb_internal_encoding("UTF-8");
 
+$delete_error = 0;
+
 session_start();
 
-$login_authority = $_SESSION["authority"];
+if($_SESSION != NULL){
+    $login_authority = $_SESSION["authority"];
+}else{
+    $login_authority = "NULL";
+}
 ?>
 
 <!DOCTYPE HTML>
@@ -33,18 +39,23 @@ $login_authority = $_SESSION["authority"];
         <main>
             
             <?php
+            if($_POST != NULL){
+                $id = $_POST['id'];
+
+                mb_internal_encoding("UTF-8");
+                $pdo = new PDO("mysql:dbname=lesson01;host=localhost;","root","");
+
+                //var_dump('select * from account where id = '.$id);
+                $stmt = $pdo -> query('select * from account where id = '.$id);
+                $delete = $stmt->fetch();
+            }else{
+                $delete_error = 1;
+            }
             
-            $id = $_POST['id'];
-            
-            mb_internal_encoding("UTF-8");
-            $pdo = new PDO("mysql:dbname=lesson01;host=localhost;","root","");
-            
-            //var_dump('select * from account where id = '.$id);
-            $stmt = $pdo -> query('select * from account where id = '.$id);
-            $delete = $stmt->fetch();
             //var_dump($delete);
             //var_dump('select * from account where id = "$id"');
             ?>
+            <?php if($delete_error == 0) : ?>
             <form action="delete_confirm.php" method="post">
             <p><label>名前（姓）</label>
             <?php echo $delete['family_name']; ?></p>
@@ -89,6 +100,10 @@ $login_authority = $_SESSION["authority"];
                 <input type="submit" id="btn_dlete_confirm" value="確認する">
                 <input type="hidden" name = "id" value="<?php echo $_POST['id'];?>">
             </form>
+            <?php else : ?>
+                <h8>※アカウント一覧画面から削除するデータを選択してください。</h8>
+            <?php endif; ?>
+            
         </main>
         
         <?php elseif($login_authority == 0) : ?>
@@ -120,7 +135,7 @@ $login_authority = $_SESSION["authority"];
         </header>
         <main>
             <div class="error_messge">
-                <h8>※ログインをしてください。</h8>
+                <h8>※ログインを行ってください。</h8>
                 </div>
         </main>
         <?php endif; ?>

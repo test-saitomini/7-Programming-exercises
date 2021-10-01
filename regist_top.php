@@ -4,7 +4,11 @@ mb_internal_encoding("UTF-8");
 
 session_start();
 
-$login_authority = $_SESSION["authority"];
+if($_SESSION != NULL){
+    $login_authority = $_SESSION["authority"];
+}else{
+    $login_authority = "NULL";
+}
 ?>
 
 <!DOCTYPE HTML>
@@ -28,6 +32,7 @@ $login_authority = $_SESSION["authority"];
                 <li>その他</li>
             </ul>
             <?php elseif($login_authority == 0) : ?>
+        <header>
             <ul>
                 <li>トップ</li>
                 <li>プロフィール</li>
@@ -36,8 +41,9 @@ $login_authority = $_SESSION["authority"];
                 <li>アカウント一覧</li>
                 <li>その他</li>
             </ul>
-            <?php else : ?>
-            <header>
+        </header>
+        <?php else : ?>
+        <header>
             <ul>
                 <li>トップ</li>
                 <li>プロフィール</li>
@@ -49,7 +55,7 @@ $login_authority = $_SESSION["authority"];
         </header>
         <main>
             <div class="error_messge">
-                <h8>※ログインをしてください。</h8>
+                <h8>※ログインを行ってください。</h8>
                 </div>
         </main>
             <?php endif; ?>

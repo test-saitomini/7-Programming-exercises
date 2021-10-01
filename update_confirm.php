@@ -4,7 +4,11 @@ mb_internal_encoding("UTF-8");
 
 session_start();
 
-$login_authority = $_SESSION["authority"];
+if($_SESSION != NULL){
+    $login_authority = $_SESSION["authority"];
+}else{
+    $login_authority = "NULL";
+}
 ?>
 
 <!DOCTYPE HTML>
@@ -27,6 +31,7 @@ $login_authority = $_SESSION["authority"];
                 <li>その他</li>
             </ul>
         </header>
+        <?php if($_POST != NULL) : ?>
         <h2>お問合わせ内容の確認</h2>
         <p>お問合わせ内容はこちらでよろしいでしょうか？
         <br>よろしければ「登録する」ボタンを押してください。
@@ -135,9 +140,11 @@ $login_authority = $_SESSION["authority"];
             <input type="hidden" value="<?php echo $_POST['authority'];?>" name="authority">
             <input type="hidden" value="0" name="delete_flag">
             
-            
-            
         </form>
+        <?php else : ?>
+            <h8>※アカウント一覧画面から更新するデータを選択してください。</h8>
+        <?php endif; ?>
+        
         <?php elseif($login_authority == 0) : ?>
         <header>
             <ul>
@@ -167,7 +174,7 @@ $login_authority = $_SESSION["authority"];
         </header>
         <main>
             <div class="error_messge">
-                <h8>※ログインをしてください。</h8>
+                <h8>※ログインを行ってください。</h8>
                 </div>
         </main>
         <?php endif; ?>
