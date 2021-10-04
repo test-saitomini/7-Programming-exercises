@@ -119,7 +119,12 @@ if($_SESSION != NULL){
             <input type="hidden" value="0" name="delete_flag">
         </form>
         <?php else : ?>
+            <div class="error_messge">
                 <h8>※アカウント登録画面からアカウント登録をしてください。</h8>
+                <form action="regist.php" >
+                    <input type="submit" class="submit" value="アカウント登録画面へ進む">
+                </form>
+            </div>
         <?php endif; ?>
         
         <?php elseif($login_authority == 0) : ?>
@@ -136,7 +141,10 @@ if($_SESSION != NULL){
         <main>
             <div class="error_messge">
                 <h8>※この画面は操作できません。</h8>
-                </div>
+                <form action="login.php" >
+                    <input type="submit" class="submit" value="ログイン画面へ戻る">
+                </form>
+            </div>
         </main>
         <?php else : ?>
         <header>
@@ -152,7 +160,10 @@ if($_SESSION != NULL){
         <main>
             <div class="error_messge">
                 <h8>※ログインを行ってください。</h8>
-                </div>
+                <form action="login.php">
+                    <input type="submit" class="submit" value="ログイン画面へ戻る">
+                </form>
+            </div>
         </main>
         <?php endif; ?>
     </body>

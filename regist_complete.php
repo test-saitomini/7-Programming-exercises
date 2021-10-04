@@ -61,8 +61,11 @@ if($_POST != NULL){
             }else{
                 echo '<h4>登録完了しました。</h4>';
             };?>
-             <form action="regist.html" method="post">
-            <input type="submit" class="button2" value="TOPページに戻る">
+            <form action="regist.html" method="post">
+                <input type="submit" class="button2" value="TOPページに戻る">
+            </form>
+            <form action="login.php">
+                <input type="submit" class="submit" value="ログイン画面へ戻る">
             </form>
         </div>
     </body>
@@ -80,7 +83,10 @@ if($_POST != NULL){
         <main>
             <div class="error_messge">
                 <h8>※この画面は操作できません。</h8>
-                </div>
+                <form action="login.php" >
+                    <input type="submit" class="submit" value="ログイン画面へ戻る">
+                </form>
+            </div>
         </main>
         <?php else : ?>
         <header>
@@ -96,7 +102,10 @@ if($_POST != NULL){
         <main>
             <div class="error_messge">
                 <h8>※ログインを行ってください。</h8>
-                </div>
+                <form action="login.php">
+                    <input type="submit" class="submit" value="ログイン画面へ戻る">
+                </form>
+            </div>
         </main>
     <?php endif; ?>
     <footer>

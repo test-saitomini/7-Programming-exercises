@@ -31,7 +31,13 @@ if($_SESSION != NULL){
                 <li><a href = "http://localhost/7-Programming-exercises/list.php">アカウント一覧</a></li>
                 <li>その他</li>
             </ul>
-            <?php elseif($login_authority == 0) : ?>
+        </header>
+        <main>
+            <form action="login.php" >
+                <input type="submit" class="submit" value="ログイン画面へ戻る">
+            </form>
+        </main>
+        <?php elseif($login_authority == 0) : ?>
         <header>
             <ul>
                 <li>トップ</li>
@@ -42,6 +48,11 @@ if($_SESSION != NULL){
                 <li>その他</li>
             </ul>
         </header>
+        <main>
+            <form action="login.php" >
+                <input type="submit" class="submit" value="ログイン画面へ戻る">
+            </form>
+        </main>
         <?php else : ?>
         <header>
             <ul>
@@ -56,14 +67,14 @@ if($_SESSION != NULL){
         <main>
             <div class="error_messge">
                 <h8>※ログインを行ってください。</h8>
-                </div>
+                <form action="login.php">
+                    <input type="submit" class="submit" value="ログイン画面へ戻る">
+                </form>
+            </div>
         </main>
-            <?php endif; ?>
-        </header>
-        
+        <?php endif; ?>
     </body>
-    
     <footer>
-            Copyright D.I.Works| D.I.blog is the one which provides Ato Z about programming
+        Copyright D.I.Works| D.I.blog is the one which provides Ato Z about programming
     </footer>
 </html>

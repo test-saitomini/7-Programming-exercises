@@ -106,8 +106,11 @@ try{
             }else{
                 echo '<h4>更新完了しました。</h4>';
             };?>
-             <form action="regist.html" method="post">
-            <input type="submit" class="button2" value="TOPページに戻る">
+            <form action="regist_top.php" method="post">
+                <input type="submit" class="button2" value="TOPページに戻る">
+            </form>
+            <form action="login.php">
+                <input type="submit" class="submit" value="ログイン画面へ戻る">
             </form>
         </div>
     </body>
@@ -125,7 +128,10 @@ try{
         <main>
             <div class="error_messge">
                 <h8>※この画面は操作できません。</h8>
-                </div>
+                <form action="login.php" >
+                    <input type="submit" class="submit" value="ログイン画面へ戻る">
+                </form>
+            </div>
         </main>
         <?php else : ?>
         <header>
@@ -141,7 +147,10 @@ try{
         <main>
             <div class="error_messge">
                 <h8>※ログインを行ってください。</h8>
-                </div>
+                <form action="login.php">
+                    <input type="submit" class="submit" value="ログイン画面へ戻る">
+                </form>
+            </div>
         </main>
     <?php endif; ?>
     <footer>

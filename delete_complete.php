@@ -135,8 +135,11 @@ echo '<!DOCTYPE HTML>
             }else{
                 echo '<h4>削除完了しました。</h4>';
             };?>
-             <form action="regist.html" method="post">
-            <input type="submit" class="button2" value="TOPページに戻る">
+            <form action="regist.html" method="post">
+                <input type="submit" class="button2" value="TOPページに戻る">
+            </form>
+            <form action="login.php">
+                <input type="submit" class="submit" value="ログイン画面へ戻る">
             </form>
         </div>
     </body>
@@ -154,7 +157,10 @@ echo '<!DOCTYPE HTML>
         <main>
             <div class="error_messge">
                 <h8>※この画面は操作できません。</h8>
-                </div>
+                <form action="login.php" >
+                    <input type="submit" class="submit" value="ログイン画面へ戻る">
+                </form>
+            </div>
         </main>
         <?php else : ?>
         <header>
@@ -170,7 +176,10 @@ echo '<!DOCTYPE HTML>
         <main>
             <div class="error_messge">
                 <h8>※ログインを行ってください。</h8>
-                </div>
+                <form action="login.php">
+                    <input type="submit" class="submit" value="ログイン画面へ戻る">
+                </form>
+            </div>
         </main>
     <?php endif; ?>
     <footer>

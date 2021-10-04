@@ -138,7 +138,10 @@ if($_SESSION != NULL){
         <main>
             <div class="error_messge">
                 <h8>※この画面は操作できません。</h8>
-                </div>
+                <form action="login.php" >
+                    <input type="submit" class="submit" value="ログイン画面へ戻る">
+                </form>
+            </div>
         </main>
         <?php else : ?>
         <header>
@@ -154,7 +157,10 @@ if($_SESSION != NULL){
         <main>
             <div class="error_messge">
                 <h8>※ログインを行ってください。</h8>
-                </div>
+                <form action="login.php">
+                    <input type="submit" class="submit" value="ログイン画面へ戻る">
+                </form>
+            </div>
         </main>
         <?php endif; ?>
         

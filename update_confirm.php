@@ -142,7 +142,12 @@ if($_SESSION != NULL){
             
         </form>
         <?php else : ?>
-            <h8>※アカウント一覧画面から更新するデータを選択してください。</h8>
+        <div class="error_messge">
+                <h8>※アカウント一覧画面から更新するデータを選択してください。</h8>
+                <form action="list.php" >
+                    <input type="submit" class="submit" value="アカウント一覧画面へ進む">
+                </form>
+            </div>
         <?php endif; ?>
         
         <?php elseif($login_authority == 0) : ?>
@@ -159,7 +164,10 @@ if($_SESSION != NULL){
         <main>
             <div class="error_messge">
                 <h8>※この画面は操作できません。</h8>
-                </div>
+                <form action="login.php" >
+                    <input type="submit" class="submit" value="ログイン画面へ戻る">
+                </form>
+            </div>
         </main>
         <?php else : ?>
         <header>
@@ -175,7 +183,10 @@ if($_SESSION != NULL){
         <main>
             <div class="error_messge">
                 <h8>※ログインを行ってください。</h8>
-                </div>
+                <form action="login.php">
+                    <input type="submit" class="submit" value="ログイン画面へ戻る">
+                </form>
+            </div>
         </main>
         <?php endif; ?>
     </body>

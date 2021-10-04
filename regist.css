@@ -81,12 +81,12 @@ h7{
 }
 
 h8{
-    float:left;
     color: red;
     font-size: 30px;
 }
 
 .error_messge{
+    width: 100%;
     text-align: center;
 }
 
