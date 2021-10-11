@@ -61,7 +61,7 @@ if($_POST != NULL){
             }else{
                 echo '<h4>登録完了しました。</h4>';
             };?>
-            <form action="regist.html" method="post">
+            <form action="regist_top.php" method="post">
                 <input type="submit" class="button2" value="TOPページに戻る">
             </form>
             <form action="login.php">
