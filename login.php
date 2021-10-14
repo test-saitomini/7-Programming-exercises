@@ -18,10 +18,14 @@ if (isset($_POST['login'])) {
     if (empty($_POST['password'])) {
        $login_error['password'] = 'パスワードが未入力です。';
     }
-    if($_POST['mail'] > 100){
+    
+    $mail_mblen = mb_strlen($_POST['mail']);
+    $password_mblen = mb_strlen($_POST['password']);
+    
+    if($mail_mblen > 100){
         $login_error['mail'] = 'メールアドレスは100文字以内で入力してください。';
     }
-    if ($_POST['password'] > 10) {
+    if ($password_mblen > 10) {
        $login_error['password'] = 'パスワードは10文字以内で入力してください。';
     }
     
@@ -35,14 +39,26 @@ if (isset($_POST['login'])) {
 
             $password = $_POST['password'];
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            
+            if(!empty($result['password'])){
+                if (password_verify($password, $result['password'])) {    
+                    $_SESSION['authority'] = $result['authority'];
+                    header('Location: regist_top.php');
+                    exit();
+                } else {
+                    $login_error['login'] = 'メールアドレスまたはパスワードに誤りがあります。';
+                }
+            }else{
+                $login_error['login'] = 'メールアドレスまたはパスワードに誤りがあります。';
+            }
 
-            if (password_verify($password, $result['password'])) {    
+            /*if (password_verify($password, $result['password'])) {    
                 $_SESSION['authority'] = $result['authority'];
                 header('Location: regist_top.php');
                 exit();
             } else {
                 $login_error['login'] = 'メールアドレスまたはパスワードに誤りがあります。';
-            }
+            }*/
         } catch (PDOException $Exception) {
             $login_error_message = $Exception->getMessage();
             $login_error_flag = 1;
