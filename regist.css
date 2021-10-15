@@ -97,3 +97,34 @@ h8{
 input:checked ~ .password_area{
   display: block;
 }
+
+/*アカウント検索の画面表示*/
+table.accountlisttable{
+    border-collapse: collapse;
+    text-align: center;
+    margin: 20px;
+}
+
+table.accountlisttable td.center{
+    width: 100px;
+    border: 1px solid #000000;
+    font-size: 10px;
+    vertical-align: text-top;
+    text-align:center;
+}
+
+table.accountlisttable td.list_center{
+    width: 150px;
+    border: 1px solid #000000;
+    font-size: 10px;
+    vertical-align: text-top;
+    text-align:center;
+}
+
+table.accountlisttable td.list_left{
+    width: 150px;
+    border: 1px solid #000000;
+    font-size: 10px;
+    vertical-align: text-top;
+    text-align:left;
+}

@@ -10,6 +10,8 @@ if($_SESSION != NULL){
     $login_authority = "NULL";
 }
 
+
+
 ?>
 
 <!DOCTYPE HTML>
@@ -36,6 +38,56 @@ if($_SESSION != NULL){
         
         <main>
             <h5>アカウント一覧画面</h5>
+            
+            <form action="" method="post">
+                <div class="textarea">
+                   <table class="accountlisttable"> 
+                        <tr>
+                            <td class="center">名前（姓）</td>
+                            <td class="list_left">
+                                <input type="text"class="text"size="50"name="family_name"id="family_name"value="<?php if( !empty($_POST['family_name']) ){ echo $_POST['family_name']; } ?>">
+                            </td>
+                            <td class="center">名前（名）</td>
+                            <td class="list_left">
+                                <input type="text"class="text" size="50"name="last_name"id="last_name"value="<?php if( !empty($_POST['last_name']) ){ echo $_POST['last_name']; } ?>">
+                            </td>
+                       </tr>
+                       <tr>
+                           <td class="center">カナ（姓）</td>
+                            <td class="list_left">
+                                <input type="text"class="text" size="50"name="family_name_kana"id="family_name_kana"value="<?php if( !empty($_POST['family_name_kana']) ){ echo $_POST['family_name_kana']; } ?>">
+                           </td>
+                           <td class="center">カナ（名）</td>
+                            <td class="list_left">
+                                <input type="text"class="text" size="50"name="last_name_kana"id="last_name_kana"value="<?php if( !empty($_POST['last_name_kana']) ){ echo $_POST['last_name_kana']; } ?>">
+                           </td>
+                       </tr>
+                       <tr>
+                           <td class="center">メールアドレス</td>
+                            <td class="list_left">
+                                <input type="text"class="text" size="50"name="mail"id="mail"value="<?php if( !empty($_POST['mail']) ){ echo $_POST['mail']; } ?>">
+                           </td>
+                           <td class="center">性別</td>
+                            <td class="list_center">
+                                <label for="0"><input id="0" type="radio" name="gender"value="0" checked>男</label>
+                                <label for="1"><input id="1" type="radio" name="gender"value="1">女</label>
+                           </td>
+                       </tr>
+                       <tr>
+                           <td class="center">アカウント権限</td>
+                            <td class="list_center"><select class="dropdown" name="authority">
+                                <option value='0'　checked>一般</option>
+                                <option value='1'>管理者</option>
+                                </select></td>
+                       </tr>
+                       <tr>
+                           <td class ="center"><input type="submit" name="kensaku"  id="btn_confirm"value="検索"></td>
+                       </tr>
+                       
+                    </table>
+                </div>
+            </form>
+            
             <div class = "kakunin_area">
             <table class="accounttable">
                 <tr>
