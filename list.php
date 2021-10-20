@@ -69,17 +69,17 @@ if($_SESSION != NULL){
                            </td>
                            <td class="center">性別</td>
                             <td class="list_center">
-                                <label for="0"><input id="0" type="radio" name="gender"value="0" checked>男</label>
-                                <label for="1"><input id="1" type="radio" name="gender"value="1">女</label>
-                                <label for="1"><input id="2" type="radio" name="gender"value="2">選択なし</label>
+                                <label for="0"><input id="0" type="radio" name="gender"value="0" <?php if(!empty($_POST['gender']) && (int)$_POST['gender']=="0") echo "checked"; ?>checked>男</label>
+                                <label for="1"><input id="1" type="radio" name="gender"value="1" <?php if(!empty($_POST['gender']) && (int)$_POST['gender']=="1") echo "checked"; ?>>女</label>
+                                <label for="1"><input id="2" type="radio" name="gender"value="2" <?php if(!empty($_POST['gender']) && (int)$_POST['gender']=="2") echo "checked"; ?>>選択なし</label>
                            </td>
                        </tr>
                        <tr>
                            <td class="center">アカウント権限</td>
                             <td class="list_center"><select class="dropdown" name="authority">
-                                <option value='0'　checked>一般</option>
-                                <option value='1'>管理者</option>
-                                <option value='2'>選択なし</option>
+                                <option value='0' <?php if(!empty($_POST['authority']) && (int)$_POST['authority']=="0") echo "selected"; ?>selected>一般</option>
+                                <option value='1' <?php if(!empty($_POST['authority']) && (int)$_POST['authority']=="1") echo "selected"; ?>>管理者</option>
+                                <option value='2' <?php if(!empty($_POST['authority']) && (int)$_POST['authority']=="2") echo "selected"; ?>>選択なし</option>
                                 </select></td>
                        </tr>
                        <tr>
@@ -97,9 +97,9 @@ if($_SESSION != NULL){
                 mb_internal_encoding("UTF-8");
                 $pdo = new PDO("mysql:dbname=lesson01;host=localhost;","root","");
             
-                if($_POST['family_name'] != " " || $_POST['last_name'] != " " 
-                   || $_POST['family_name_kana'] != " " || $_POST['last_name_kana'] != " " 
-                   || $_POST['mail'] != " " || $_POST["gender"] != "2" || $_POST["authority"] != "2"){
+                if($_POST['family_name'] != "" || $_POST['last_name'] != "" 
+                   || $_POST['family_name_kana'] != "" || $_POST['last_name_kana'] != "" 
+                   || $_POST['mail'] != "" || $_POST["gender"] != "2" || $_POST["authority"] != "2"){
                     $stmt = $pdo -> query("select * from account where family_name LIKE '".$_POST['family_name']."' OR last_name LIKE '".$_POST["last_name"]."' OR family_name_kana LIKE '".$_POST["family_name_kana"]."' OR last_name_kana LIKE '".$_POST["last_name_kana"]."' OR mail LIKE '".$_POST["mail"]."' OR gender='".$_POST["gender"]."' OR authority='".$_POST['authority']."' ORDER BY id DESC");
                     
                     
