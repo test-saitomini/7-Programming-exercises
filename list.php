@@ -100,7 +100,8 @@ if($_SESSION != NULL){
                 if($_POST['family_name'] != "" || $_POST['last_name'] != "" 
                    || $_POST['family_name_kana'] != "" || $_POST['last_name_kana'] != "" 
                    || $_POST['mail'] != "" || $_POST["gender"] != "2" || $_POST["authority"] != "2"){
-                    $stmt = $pdo -> query("select * from account where family_name LIKE '".$_POST['family_name']."' OR last_name LIKE '".$_POST["last_name"]."' OR family_name_kana LIKE '".$_POST["family_name_kana"]."' OR last_name_kana LIKE '".$_POST["last_name_kana"]."' OR mail LIKE '".$_POST["mail"]."' OR gender='".$_POST["gender"]."' OR authority='".$_POST['authority']."' ORDER BY id DESC");
+                    
+                    $stmt = $pdo -> query("select * from account where (family_name LIKE '%".$_POST['family_name']."%') AND (last_name LIKE '%".$_POST["last_name"]."%') AND (family_name_kana LIKE '%".$_POST["family_name_kana"]."%') AND (last_name_kana LIKE '%".$_POST["last_name_kana"]."%') AND (mail LIKE '%".$_POST["mail"]."%') AND (gender='".$_POST["gender"]."') AND (authority='".$_POST['authority']."') ORDER BY id DESC");
                     
                     
                 }else{
