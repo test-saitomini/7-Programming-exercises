@@ -109,7 +109,7 @@ if($_SESSION != NULL){
                 
                 if($family_name != "" || $last_name !="" || $family_name_kana !="" || $last_name_kana != ""
                   || $mail != "" || $gender != "2" || $authority != "2"){
-                    $sql = "select * from account where ";
+                    $sql = "select * form account where ";
                     if ($family_name != ""){
                         $family_name = '%'.$family_name.'%';
                         $sql.= "family_name LIKE = ?";
@@ -179,8 +179,7 @@ if($_SESSION != NULL){
                     var_dump($sql);
                     var_dump($data);
                     $stmt = $pdo->prepare($sql);
-                    $stmt -> bindParam($sql,$data,PDO::PARAM_STR);
-                    $stmt -> execute();
+                    $stmt->execute($data);
                 }else{
                     $stmt = $pdo -> query("select * from account ORDER BY id DESC");
                 }
