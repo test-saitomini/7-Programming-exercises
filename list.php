@@ -97,17 +97,92 @@ if($_SESSION != NULL){
                 mb_internal_encoding("UTF-8");
                 $pdo = new PDO("mysql:dbname=lesson01;host=localhost;","root","");
             
-                if($_POST['family_name'] != "" || $_POST['last_name'] != "" 
-                   || $_POST['family_name_kana'] != "" || $_POST['last_name_kana'] != "" 
-                   || $_POST['mail'] != "" || $_POST["gender"] != "2" || $_POST["authority"] != "2"){
-                    
-                    $stmt = $pdo -> query("select * from account where (family_name LIKE '%".$_POST['family_name']."%') AND (last_name LIKE '%".$_POST["last_name"]."%') AND (family_name_kana LIKE '%".$_POST["family_name_kana"]."%') AND (last_name_kana LIKE '%".$_POST["last_name_kana"]."%') AND (mail LIKE '%".$_POST["mail"]."%') AND (gender='".$_POST["gender"]."') AND (authority='".$_POST['authority']."') ORDER BY id DESC");
-                    
-                    
+                $family_name = $_POST['family_name'];
+                $last_name = $_POST['last_name'];
+                $family_name_kana = $_POST['family_name_kana'];
+                $last_name_kana = $_POST['last_name_kana'];
+                $mail = $_POST['mail'];
+                $gender = $_POST['gender'];
+                $authority = $_POST['authority'];
+                
+                $count = 0;
+                
+                if($family_name != "" || $last_name !="" || $family_name_kana !="" || $last_name_kana != ""
+                  || $mail != "" || $gender != "2" || $authority != "2"){
+                    $sql = "select * from account where ";
+                    if ($family_name != ""){
+                        $family_name = '%'.$family_name.'%';
+                        $sql.= "family_name LIKE = ?";
+                        $data = array($family_name);
+                        $count = 1;
+                    }
+                    if ($last_name != ""){ 
+                        if($count == 0){
+                            $sql.= "last_name LIKE = ?";
+                            $data = array($last_name);
+                            $count = 1;
+                        }else{
+                            $sql.= "AND last_name LIKE = ?";
+                            $data = array_merge($data,array($last_name));
+                        }
+                    }
+                    if ($family_name_kana != ""){ 
+                        if($count == 0){
+                            $sql.= "family_name_kana LIKE = ?";
+                            $data = array($family_name_kana);
+                            $count = 1;
+                        }else{
+                            $sql.= "AND family_name_kana LIKE = ?";
+                            $data = array_merge($data,array($family_name_kana));
+                        }
+                    }
+                    if ($last_name_kana != ""){ 
+                        $sql.= "last_name_kana LIKE = ?";
+                        if($count == 0){
+                            $data = array($last_name_kana);
+                            $count = 1;
+                        }else{
+                            $sql.= "AND last_name_kana LIKE = ?";
+                            $data = array_merge($data,array($last_name_kana));
+                        }
+                    }
+                    if ($mail != ""){ 
+                        if($count == 0){
+                            $sql.= "mail LIKE = ?";
+                            $data = array($mail);
+                            $count = 1;
+                        }else{
+                            $sql.= "AND mail LIKE = ?";
+                            $data = array_merge($data,array($mail));
+                        }
+                    }
+                    if ($gender != "2"){ 
+                        if($count == 0){
+                            $sql.= "gender = ?";
+                            $data = array($gender);
+                            $count = 1;
+                        }else{
+                            $sql.= "AND gender = ?";
+                            $data = array_merge($data,array($gender));
+                        }
+                    }
+                    if ($authority != "2"){ 
+                        if($count == 0){
+                            $sql.= "authority = ?";
+                            $data = array($authority);
+                            $count = 1;
+                        }else{
+                            $sql.= "AND authority = ?";
+                            $data = array_merge($data,array($authority));
+                        }
+                    }
+                    var_dump($sql);
+                    var_dump($data);
+                    $stmt = $pdo->prepare($sql);
+                    $stmt -> bindParam($sql,$data,PDO::PARAM_STR);
+                    $stmt -> execute();
                 }else{
-                $stmt = $pdo -> query("select * from account ORDER BY id DESC");
-                    
-                    
+                    $stmt = $pdo -> query("select * from account ORDER BY id DESC");
                 }
             }
             
