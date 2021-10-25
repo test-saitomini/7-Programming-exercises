@@ -109,77 +109,92 @@ if($_SESSION != NULL){
                 
                 if($family_name != "" || $last_name !="" || $family_name_kana !="" || $last_name_kana != ""
                   || $mail != "" || $gender != "2" || $authority != "2"){
-                    $sql = "select * form account where ";
+                    $sql = "select * from account where ";
                     if ($family_name != ""){
                         $family_name = '%'.$family_name.'%';
-                        $sql.= "family_name LIKE = ?";
-                        $data = array($family_name);
+                        $sql.= "family_name LIKE (:family_name)";
                         $count = 1;
                     }
                     if ($last_name != ""){ 
                         if($count == 0){
-                            $sql.= "last_name LIKE = ?";
-                            $data = array($last_name);
+                            $sql.= "last_name LIKE (:last_name)";
+                            $last_name = '%'.$last_name.'%';
                             $count = 1;
                         }else{
-                            $sql.= "AND last_name LIKE = ?";
-                            $data = array_merge($data,array($last_name));
+                            $sql.= " AND last_name LIKE (:last_name)";
+                            $last_name = '%'.$last_name.'%';
                         }
                     }
                     if ($family_name_kana != ""){ 
                         if($count == 0){
-                            $sql.= "family_name_kana LIKE = ?";
-                            $data = array($family_name_kana);
+                            $sql.= "family_name_kana LIKE (:family_name_kana)";
+                            $family_name_kana = '%'.$family_name_kana.'%';
                             $count = 1;
                         }else{
-                            $sql.= "AND family_name_kana LIKE = ?";
-                            $data = array_merge($data,array($family_name_kana));
+                            $sql.= " AND family_name_kana LIKE (:family_name_kana)";
+                            $family_name_kana = '%'.$family_name_kana.'%';
                         }
                     }
                     if ($last_name_kana != ""){ 
-                        $sql.= "last_name_kana LIKE = ?";
                         if($count == 0){
-                            $data = array($last_name_kana);
+                            $sql.= "last_name_kana LIKE (:last_name_kana)";
+                            $last_name_kana = '%'.$last_name_kana.'%';
                             $count = 1;
                         }else{
-                            $sql.= "AND last_name_kana LIKE = ?";
-                            $data = array_merge($data,array($last_name_kana));
+                            $sql.= " AND last_name_kana LIKE (:last_name_kana)";
+                            $last_name_kana = '%'.$last_name_kana.'%';
                         }
                     }
                     if ($mail != ""){ 
                         if($count == 0){
-                            $sql.= "mail LIKE = ?";
-                            $data = array($mail);
+                            $sql.= "mail LIKE (:mail)";
+                            $mail = '%'.$mail.'%';
                             $count = 1;
                         }else{
-                            $sql.= "AND mail LIKE = ?";
-                            $data = array_merge($data,array($mail));
+                            $sql.= " AND mail LIKE (:mail)";
+                            $mail = '%'.$mail.'%';
                         }
                     }
                     if ($gender != "2"){ 
                         if($count == 0){
-                            $sql.= "gender = ?";
-                            $data = array($gender);
+                            $sql.= "gender = :gender";
                             $count = 1;
                         }else{
-                            $sql.= "AND gender = ?";
-                            $data = array_merge($data,array($gender));
+                            $sql.= " AND gender = :gender";
                         }
                     }
                     if ($authority != "2"){ 
                         if($count == 0){
-                            $sql.= "authority = ?";
-                            $data = array($authority);
+                            $sql.= "authority = :authority";
                             $count = 1;
                         }else{
-                            $sql.= "AND authority = ?";
-                            $data = array_merge($data,array($authority));
+                            $sql.= " AND authority = :authority";
                         }
                     }
-                    var_dump($sql);
-                    var_dump($data);
                     $stmt = $pdo->prepare($sql);
-                    $stmt->execute($data);
+                    if ($family_name != ""){
+                        $stmt->bindValue(':family_name', $family_name, PDO::PARAM_STR);
+                    }
+                    if ($last_name != ""){
+                        $stmt->bindValue(':last_name', $last_name, PDO::PARAM_STR);
+                    }
+                    if ($family_name_kana != ""){
+                        $stmt->bindValue(':family_name_kana', $family_name_kana, PDO::PARAM_STR);
+                    }
+                    if ($last_name_kana != ""){
+                        $stmt->bindValue(':last_name_kana', $last_name_kana, PDO::PARAM_STR);
+                    }
+                    if ($mail != ""){
+                        $stmt->bindValue(':mail', $mail, PDO::PARAM_STR);
+                    }
+                    if ($gender != "2"){
+                        $stmt->bindValue(':gender', $gender);
+                    }
+                    if ($authority != "2"){
+                        $stmt->bindValue(':authority', $authority);
+                    }
+                    
+                    $stmt->execute();
                 }else{
                     $stmt = $pdo -> query("select * from account ORDER BY id DESC");
                 }
