@@ -10,8 +10,6 @@ if($_SESSION != NULL){
     $login_authority = "NULL";
 }
 
-
-
 ?>
 
 <!DOCTYPE HTML>
@@ -71,7 +69,7 @@ if($_SESSION != NULL){
                             <td class="list_center">
                                 <label for="0"><input id="0" type="radio" name="gender"value="0" <?php if(!empty($_POST['gender']) && (int)$_POST['gender']=="0") echo "checked"; ?>checked>男</label>
                                 <label for="1"><input id="1" type="radio" name="gender"value="1" <?php if(!empty($_POST['gender']) && (int)$_POST['gender']=="1") echo "checked"; ?>>女</label>
-                                <label for="1"><input id="2" type="radio" name="gender"value="2" <?php if(!empty($_POST['gender']) && (int)$_POST['gender']=="2") echo "checked"; ?>>選択なし</label>
+                                <label for="2"><input id="2" type="radio" name="gender"value="2" <?php if(!empty($_POST['gender']) && (int)$_POST['gender']=="2") echo "checked"; ?>>選択なし</label>
                            </td>
                        </tr>
                        <tr>
@@ -195,8 +193,15 @@ if($_SESSION != NULL){
                     }
                     
                     $stmt->execute();
+                    $count = $stmt -> rowCount();
+                    if($count == 0){
+                        echo '<h7>該当のアカウントは見つかりませんでした。</h7>';
+                    }else{
+                        echo '<h7>該当のアカウントが'.$count.'件見つかりました。</h7>';
+                    }
                 }else{
                     $stmt = $pdo -> query("select * from account ORDER BY id DESC");
+                    echo '<h7>全件表示しています。</h7>';
                 }
             }
             
