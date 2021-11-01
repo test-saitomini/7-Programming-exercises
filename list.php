@@ -67,7 +67,7 @@ if($_SESSION != NULL){
                            </td>
                            <td class="center">性別</td>
                             <td class="list_center">
-                                <label for="inq1"><input type="radio" id="inq1" name="gender" value="" <?php if(isset($_POST['gender']) && $_POST['gender']==="") ?>checked="">選択なし</label>
+                                <label for="inq1"><input type="radio" id="inq1" name="gender" value="" <?php if(isset($_POST['gender']) && $_POST['gender']==="") ?>checked>選択なし</label>
                                 <label for="inq2"><input type="radio" id="inq2" name="gender" value='0' <?php if(isset($_POST['gender']) && $_POST['gender']==='0') echo 'checked'; ?>>男</label>
                                 <label for="inq3"><input type="radio" id="inq3" name="gender" value='1' <?php if(isset($_POST['gender']) && $_POST['gender']=='1') echo 'checked'; ?>>女</label>
                            </td>
