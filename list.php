@@ -67,17 +67,17 @@ if($_SESSION != NULL){
                            </td>
                            <td class="center">性別</td>
                             <td class="list_center">
-                                <label for="0"><input id="0" type="radio" name="gender"value="0" <?php if(!empty($_POST['gender']) && (int)$_POST['gender']=="0") echo "checked"; ?>checked>男</label>
-                                <label for="1"><input id="1" type="radio" name="gender"value="1" <?php if(!empty($_POST['gender']) && (int)$_POST['gender']=="1") echo "checked"; ?>>女</label>
-                                <label for="2"><input id="2" type="radio" name="gender"value="2" <?php if(!empty($_POST['gender']) && (int)$_POST['gender']=="2") echo "checked"; ?>>選択なし</label>
+                                <label for="inq1"><input type="radio" id="inq1" name="gender" value="" <?php if(isset($_POST['gender']) && $_POST['gender']==="") ?>checked="">選択なし</label>
+                                <label for="inq2"><input type="radio" id="inq2" name="gender" value='0' <?php if(isset($_POST['gender']) && $_POST['gender']==='0') echo 'checked'; ?>>男</label>
+                                <label for="inq3"><input type="radio" id="inq3" name="gender" value='1' <?php if(isset($_POST['gender']) && $_POST['gender']=='1') echo 'checked'; ?>>女</label>
                            </td>
                        </tr>
                        <tr>
                            <td class="center">アカウント権限</td>
                             <td class="list_center"><select class="dropdown" name="authority">
-                                <option value='0' <?php if(!empty($_POST['authority']) && (int)$_POST['authority']=="0") echo "selected"; ?>selected>一般</option>
-                                <option value='1' <?php if(!empty($_POST['authority']) && (int)$_POST['authority']=="1") echo "selected"; ?>>管理者</option>
-                                <option value='2' <?php if(!empty($_POST['authority']) && (int)$_POST['authority']=="2") echo "selected"; ?>>選択なし</option>
+                                <option value="" <?php if(isset($_POST['authority']) && $_POST['authority']==="") echo 'selected'; ?>>選択なし</option>
+                                <option value='0' <?php if(isset($_POST['authority']) && $_POST['authority']==='0') echo 'selected'; ?>>一般</option>
+                                <option value='1' <?php if(isset($_POST['authority']) && $_POST['authority']=='1') echo 'selected'; ?>>管理者</option>
                                 </select></td>
                        </tr>
                        <tr>
@@ -106,7 +106,7 @@ if($_SESSION != NULL){
                 $count = 0;
                 
                 if($family_name != "" || $last_name !="" || $family_name_kana !="" || $last_name_kana != ""
-                  || $mail != "" || $gender != "2" || $authority != "2"){
+                  || $mail != "" || $gender != "" || $authority != ""){
                     $sql = "select * from account where ";
                     if ($family_name != ""){
                         $family_name = '%'.$family_name.'%';
@@ -153,7 +153,7 @@ if($_SESSION != NULL){
                             $mail = '%'.$mail.'%';
                         }
                     }
-                    if ($gender != "2"){ 
+                    if ($gender != ""){ 
                         if($count == 0){
                             $sql.= "gender = :gender";
                             $count = 1;
@@ -161,7 +161,7 @@ if($_SESSION != NULL){
                             $sql.= " AND gender = :gender";
                         }
                     }
-                    if ($authority != "2"){ 
+                    if ($authority != ""){ 
                         if($count == 0){
                             $sql.= "authority = :authority";
                             $count = 1;
@@ -185,10 +185,10 @@ if($_SESSION != NULL){
                     if ($mail != ""){
                         $stmt->bindValue(':mail', $mail, PDO::PARAM_STR);
                     }
-                    if ($gender != "2"){
+                    if ($gender != ""){
                         $stmt->bindValue(':gender', $gender);
                     }
-                    if ($authority != "2"){
+                    if ($authority != ""){
                         $stmt->bindValue(':authority', $authority);
                     }
                     
